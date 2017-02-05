@@ -1,19 +1,16 @@
-import React from 'react'
+import React from 'react' 
 import Gridmaker from './flexfield'
 import Square from './square'
+import Line from './Line'
 
 const Grid = () => {
 
-let made = Gridmaker(10)
+let lines =   Gridmaker(10).map((line, lineIndex)=>{
+            return <Line line={line} index={lineIndex} key={lineIndex} />
+              })
 
-let squares = 
-  made.map((line, lineIndex)=>{
-  return line.map((cell, cellIndex)=>{
-     return <div className="square"> {cell} </div>
-   })
-  })
 
-return ( <div> {squares} </div> )
+return ( <div className="container"> {lines} </div> )
 
 
 

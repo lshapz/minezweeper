@@ -8,7 +8,6 @@ class App extends Component {
     return (
       <div className="App">
       <Grid />
-        here is my app
       </div>
     );
   }

@@ -9,21 +9,21 @@ var array = [];
 
 let newer_array = array.map((item, index)=>{
 
- let mineA =  Math.floor((Math.random() * size) + 1)
- let mineB =  Math.floor((Math.random() * size) + 1)
+ let mineA =  Math.floor((Math.random() * size))
+ let mineB =  Math.floor((Math.random() * size))
 
  item[mineA] = "mine"
  item[mineB] = "mine"
  if (size > 15)
- {let mineC =  Math.floor((Math.random() * size) + 1)
- let mineD =  Math.floor((Math.random() * size) + 1)
+ {let mineC =  Math.floor((Math.random() * size))
+ let mineD =  Math.floor((Math.random() * size))
 
  item[mineC] = "mine"
  item[mineD] = "mine"
 }
 else if (size > 25)
- {let mineE =  Math.floor((Math.random() * size) + 1)
- let mineF =  Math.floor((Math.random() * size) + 1)
+ {let mineE =  Math.floor((Math.random() * size))
+ let mineF =  Math.floor((Math.random() * size))
 
  item[mineE] = "mine"
  item[mineF] = "mine"

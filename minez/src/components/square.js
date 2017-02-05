@@ -5,10 +5,10 @@ const Square = (props) => {
 
 return (
 
-  <span>
-  foo
-    {this.props.show}
-  </span>
+  <div className="one column bold" id={props.index}>
+
+    {props.forData}
+  </div>
 
   )
 
