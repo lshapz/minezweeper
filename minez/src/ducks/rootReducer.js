@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
-import {peopleReducer} from './people.js'
+import {gameReducer} from './game.js'
+import {nearReducer} from './nearby.js'
 
 const rootReducer = combineReducers({
-   peopleReducer
+   gameReducer, nearReducer
  });
 
 

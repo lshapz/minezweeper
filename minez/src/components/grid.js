@@ -1,6 +1,6 @@
 import React from 'react' 
 import Gridmaker from './flexfield'
-import Square from './square'
+import Square from './Square'
 import Line from './Line'
 
 const Grid = () => {

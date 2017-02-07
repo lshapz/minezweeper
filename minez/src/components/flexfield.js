@@ -13,7 +13,7 @@ let newer_array = array.map((item, index)=>{
  let mineB =  Math.floor((Math.random() * size))
 
  item[mineA] = "mine"
- item[mineB] = "mine"
+ // item[mineB] = "mine"
  if (size > 15)
  {let mineC =  Math.floor((Math.random() * size))
  let mineD =  Math.floor((Math.random() * size))
