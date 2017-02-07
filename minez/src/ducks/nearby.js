@@ -6,6 +6,12 @@ export const findFriends = (indexArray) => {
     type: 'FIND FRIENDS'
   };
 }
+export const flaggedUp = (indexArray) =>{
+    return {
+    payload: indexArray, 
+    type: 'ALL FLAGGED'
+  };
+}
 
 
 export const nearReducer = (state = null, action) => {

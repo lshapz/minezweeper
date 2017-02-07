@@ -1,3 +1,13 @@
+.bold {
+  font-weight: bold;
+}
+
+.giant {
+  font-size: 10em;
+  font-weight: bold;
+  text-align: center;
+}
+
 body {
   margin: 0;
   padding: 0;

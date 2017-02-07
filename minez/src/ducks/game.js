@@ -6,13 +6,30 @@ export const endGame = () => {
   };
 }
 
+export const mineCount = () => {
+  return {
+    type: 'RENDER GRID'
+  };
+}
 
-export const gameReducer = (state = true, action) => {
+export const flagCount = () => {
+  return {
+    type: 'MINE FLAGGED'
+  };
+}
+
+
+export const gameReducer = (state = {playing: true, mines: 0}, action) => {
   switch (action.type) {
+    case 'RENDER GRID':
+      let newMine = state.mines += 1
+      return {...state, mines: newMine}
     case 'END GAME':
-      state = false
       console.log("game over")
-      return state;
+      return {...state, playing: false } ;
+    case 'MINE FLAGGED': 
+      let flag = state.mines -= 1
+      return {...state, mines: flag }
     default:
       return state;
   }
