@@ -2,55 +2,46 @@ import React from 'react'
 import {endGame, mineCount, flagCount} from '../ducks/game.js'
 import { connect } from 'react-redux'
 import {findFriends} from '../ducks/nearby.js'
-
+import {defineSquare, flagSquare, clickSquare} from '../ducks/board.js'
 
 class Square extends React.Component {
 
 constructor(props){
+  
   super(props)
+  this.state = this.props.me
+  // if (this.props.forData.text === "mine")
+  //   { this.props.mineCount() 
+  //     // console.log(this.state.id)
+  //   }
+  // this needs to be moved into Gridmaker or something 
 
-  this.state = {id: [this.props.forData.row, this.props.forData.column], 
-    text: this.props.forData.text, clicked: this.props.forData.clicked, flagged: this.props.forData.flag}
-  if (this.props.forData.text === "mine")
-    { this.props.mineCount() 
-      console.log(this.state.id)
-    }
 }
 
 handleClick(event){
   event.preventDefault()
   console.log(event.target)
   if (event.type === "contextmenu"){
-    // send this information up to Grid? 
+    this.props.flagSquare(this.props.row, this.props.column)
     this.setState({flagged: true})
-    this.props.flagCount()
+    // this.props.flagCount()
+    // flagCount has to be a toggle not straight math
 }
-// need to handle changing from flagged to clicked if you change your mind HTK
   else {  
+    this.props.clickSquare(this.props.row, this.props.column)
     this.setState({clicked: true})
-    if (this.state.text === 'mine') {
+    if (this.props.me.text === 'mine') {
       this.props.endGame()
     }
-    if (this.state.text === '0')
-    {
-      // this.props.findFriends(this.state.id)
-      // I think you're going to have to make it all a part of the state 
-    }
-
-    // you probably want to push this back to Grid?
-    //
-  }  
-
 }
-
-
+}
 
 render(){
   let show = "X"
-    if (this.props.game.playing === false || this.state.clicked === true) {
-        show= this.props.forData.text
+    if (this.props.game.playing === false || this.props.me.clicked === true) {
+        show = this.props.me.text
       }
-    else if (this.state.flagged === true ) {
+    else if (this.props.me.flagged === true ) {
       show = "flag"
       }
 
@@ -65,9 +56,13 @@ render(){
   )}
 
 }
-function mapStateToProps(state){
-  return {game: state.gameReducer} 
+
+function mapStateToProps(state, props){
+  let this_square = state.gridReducer.filter(item=>{
+    return item.row === props.row && item.column === props.column
+  })
+  return {game: state.gameReducer, me: this_square[0]} 
 }
 
 
-export default connect(mapStateToProps, {endGame, findFriends, mineCount, flagCount})(Square)
+export default connect(mapStateToProps, {clickSquare, endGame, defineSquare, flagSquare, findFriends, mineCount, flagCount})(Square)

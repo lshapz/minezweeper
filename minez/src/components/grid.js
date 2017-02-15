@@ -7,10 +7,20 @@ import {connect} from 'react-redux'
 
 const Grid = (props) => {
 
-let lines =   Gridmaker(8, 8).map((line, lineIndex)=>{
-            return <Line row={line} index={lineIndex} key={lineIndex} />
+let flex = Gridmaker(8, 8)
+
+flex.forEach(item=>  { props.defineSquare(item)}
+)
+
+
+let lines =  flex.map((line, lineIndex)=>{
+            return <Line line={line} row={lineIndex + 1} key={lineIndex} />
               })
 
+
+// Gridmaker(8, 8).forEach(item=>{
+//   defineSquare(item)
+// })
 
 
 return ( <div className="container"> {lines} </div> )
