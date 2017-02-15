@@ -5,7 +5,7 @@ const Line = (props) => {
 
 // debugger
 let squares = 
-  props.line.map((cell, cellIndex)=>{
+  props.row.map((cell, cellIndex)=>{
      
      return <Square key={cellIndex} lineId={props.index} cellId={cellIndex} forData={cell} /> 
    })
