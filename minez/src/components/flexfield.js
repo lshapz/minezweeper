@@ -6,7 +6,7 @@ var array = [];
       array.push(new Array(width).fill(null));
   }
 
-
+// https://hackernoon.com/what-you-should-know-about-es6-maps-dc66af6b9a1e#.afe1kb9ba
 let newer_array = array.map((item, index)=>{
 
  let mineA =  Math.floor((Math.random() * width))
