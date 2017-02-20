@@ -7,10 +7,12 @@ const Line = (props) => {
 let squares = 
   props.line.map((cell, cellIndex)=>{
      
-     return <Square key={cellIndex} row={props.row} column={cellIndex + 1} /> 
+     return <Square key={cellIndex} handleClick={props.handleClick}  row={props.row} column={cellIndex + 1} /> 
    })
 
-return ( <div className="row"> {squares} </div>  )
+return (
+
+ <div className="row"> {squares} </div>  )
 
 
 

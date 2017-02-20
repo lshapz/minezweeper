@@ -2,33 +2,55 @@ import React from 'react'
 import Gridmaker from './flexfield'
 import Square from './Square'
 import Line from './Line'
-import {defineSquare} from '../ducks/board.js'
+// import {createGrid} from '../ducks/board.js'
 import {connect} from 'react-redux' 
+ import {flagSquare, clickSquare} from '../ducks/board.js'
 
-const Grid = (props) => {
+class Grid extends React.Component {
 
-let flex = Gridmaker(8, 8)
+constructor(props){
+  super(props)
+}
 
-flex.forEach(item=>  { props.defineSquare(item)}
-)
+handleClick(event){
+  event.preventDefault()
+  debugger
+  console.log(event.target)
+  if (event.type === "contextmenu"){
+    this.props.flagSquare(this.props.row, this.props.column)
+    // this.props.flagCount()
+    // flagCount has to be a toggle not straight math
+}
+  else {  
+    // debugger
+    this.props.clickSquare(this.props.row, this.props.column)
+    // this.setState({clicked: true})
+    if (this.props.me.text === 'mine') {
+      this.props.endGame()
+    }
+}
+}
 
+
+render(){
+  let flex = this.props.flex
 
 let lines =  flex.map((line, lineIndex)=>{
-            return <Line line={line} row={lineIndex + 1} key={lineIndex} />
+            return <Line line={line} row={lineIndex + 1} handleClick={this.handleClick} key={lineIndex} />
               })
 
-
-// Gridmaker(8, 8).forEach(item=>{
-//   defineSquare(item)
-// })
-
-
 return ( <div className="container"> {lines} </div> )
-
+}
 
 
 }
 
 
+function mapStateToProps(state, props){
+  return {flex: state.gridReducer} 
+}
 
-export default connect(null, {defineSquare})(Grid)
+
+
+
+export default connect(mapStateToProps, {flagSquare, clickSquare})(Grid)

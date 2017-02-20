@@ -193,7 +193,9 @@ else if (height * width > 300)
 
    if (cell === "mine")
       {mines = "mine"}
-    
+  
+  // if (mines === 0)    {  
+  // }
 
     return mines
   })

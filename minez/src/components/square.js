@@ -20,33 +20,17 @@ import imagemine from './images/mine.png'
 class Square extends React.Component {
 
 constructor(props){
-  
+  // debugger
   super(props)
-  this.state = this.props.me
+
+  // debugger
+  // this.state = this.props.me
   // if (this.props.forData.text === "mine")
   //   { this.props.mineCount() 
   //     // console.log(this.state.id)
   //   }
   // this needs to be moved into Gridmaker or something 
 
-}
-
-handleClick(event){
-  event.preventDefault()
-  console.log(event.target)
-  if (event.type === "contextmenu"){
-    this.props.flagSquare(this.props.row, this.props.column)
-    this.setState({flagged: true})
-    // this.props.flagCount()
-    // flagCount has to be a toggle not straight math
-}
-  else {  
-    this.props.clickSquare(this.props.row, this.props.column)
-    this.setState({clicked: true})
-    if (this.props.me.text === 'mine') {
-      this.props.endGame()
-    }
-}
 }
 
 render(){
@@ -86,16 +70,11 @@ render(){
       default:
         image = imageX;
       }
-    
-
-
-
-
+// console.log(show)
 
   return (
-
-  <div className="one column bold" onContextMenu={this.handleClick.bind(this)} onClick={this.handleClick.bind(this)}>
-    <img src={image} />
+  <div className="one column bold" onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
+     <img src={image} />
   </div>
 
   )}
@@ -103,10 +82,11 @@ render(){
 }
 
 function mapStateToProps(state, props){
-  let this_square = state.gridReducer.filter(item=>{
-    return item.row === props.row && item.column === props.column
-  })
-  return {game: state.gameReducer, me: this_square[0]} 
+  let foo = state.gridReducer[props.row-1][props.column-1]
+  // let this_square = state.gridReducer.filter(item=>{
+  //   return item.row === props.row && item.column === props.column
+  // })
+  return {game: state.gameReducer, me: foo} 
 }
 
 
