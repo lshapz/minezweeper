@@ -19,7 +19,10 @@ handleClick(event){
     this.props.flagCount(this.props)
   }
   else {  
-    if (this.props.me.clicked === false && this.props.me.flag === false) {
+    if (this.props.me.flag === true) {
+      null
+    }
+    else if (this.props.me.clicked === false) {
       this.props.clickSquare(this.props.row, this.props.column)
         if (this.props.me.text === 'mine') {
           this.props.endGame()
@@ -35,6 +38,7 @@ handleClick(event){
         }
       }) 
     }
+
   }
 this.props.takeTurn()
 
