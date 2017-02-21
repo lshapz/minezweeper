@@ -29,25 +29,20 @@ constructor(props){
 
 }
 
-
-
-
 componentWillUpdate(){
     if (this.props.me.text === 0 && this.props.me.clicked === true) 
-    {
-              let row = this.props.me.row
+    {         let row = this.props.me.row
               let column = this.props.me.column
               let neighbors = [
-              [row-1, column-1], [row-1, column], [row-1, column+1], 
-              [row, column-1], [row, column+1],
-              [row+1, column-1], [row+1, column], [row+1, column+1]
+                [row-1, column-1], [row-1, column], [row-1, column+1], 
+                [row, column-1], [row, column+1],
+                [row+1, column-1], [row+1, column], [row+1, column+1]
               ]
-      neighbors.forEach(arr=>
-      {
+      neighbors.forEach(arr=>{
       if (this.props.flex[arr[0]] && this.props.flex[arr[0]][arr[1]] && this.props.flex[arr[0]][arr[1]].text !== 'mine' && this.props.flex[arr[0]][arr[1]].clicked === false)
-      {
-        this.props.clickSquare(arr[0], arr[1])
-      }
+        {
+          this.props.clickSquare(arr[0], arr[1])
+        }
       })
 
     }
@@ -64,13 +59,11 @@ render(){
     else if (this.props.game.playing === false){
         show = this.props.me.text
     }
-
     else if (this.props.me.flag === true ) {
       show = "flag"
-    }
-    
- let image
-  
+    }  
+  let image
+  // https://hackernoon.com/rethinking-javascript-eliminate-the-switch-statement-for-better-code-5c81c044716d#.ugl20fsep
   switch (show){
       case 0:
         image = image0;
@@ -125,10 +118,7 @@ render(){
 
 function mapStateToProps(state, props){
   let foo = state.gridReducer[props.row][props.column]
-  // let this_square = state.gridReducer.filter(item=>{
-  //   return item.row === props.row && item.column === props.column
-  // })
-  return {game: state.gameReducer, me: foo, img: foo.image, flex: state.gridReducer} 
+  return {game: state.gameReducer, me: foo, flex: state.gridReducer} 
 }
 
 

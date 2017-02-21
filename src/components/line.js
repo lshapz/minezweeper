@@ -3,10 +3,8 @@ import Square from './square'
 
 const Line = (props) => {
 
-// debugger
-let squares = 
+  let squares = 
   props.line.map((cell, cellIndex)=>{
-     
      return <Square key={cellIndex} handleClick={props.handleClick}  row={props.row} column={cellIndex} /> 
    })
 

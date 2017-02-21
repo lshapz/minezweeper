@@ -8,7 +8,7 @@ var array = [];
   }
 
 // https://hackernoon.com/what-you-should-know-about-es6-maps-dc66af6b9a1e#.afe1kb9ba
-let newer_array = array.map((item, index)=>{
+  let newer_array = array.map((item, index)=>{
 
  let mineA =  Math.floor((Math.random() * width))
  let mineB =  Math.floor((Math.random() * width))
@@ -195,9 +195,6 @@ else if (height * width > 300)
    if (cell === "mine")
       {mines = "mine"}
   
-  // if (mines === 0)    {  
-  // }
-
     return mines
   })
 

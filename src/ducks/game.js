@@ -44,8 +44,8 @@ export const gameReducer = (state = {playing: true, mines: 0, turn: 0}, action) 
       {flag = state.mines -= 1}
       else if (action.payload === false)
       {flag = state.mines += 1}
-      if (flag === 0)
-        {endGame()}
+      // if (flag === 0)
+      //   {endGame()}
       return {...state, mines: flag }
     default:
       return state;
