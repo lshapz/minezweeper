@@ -23,9 +23,9 @@ var array = [];
  let mineD =  Math.floor((Math.random() * width))
 
  item[mineC] = "mine"
-  
-
+  if (array.indexOf(item) % 2 !== 0){
    item[mineD] = "mine"
+  }
 }
 else if (height * width > 300)
  {let mineE =  Math.floor((Math.random() * width))

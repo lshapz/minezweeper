@@ -7,21 +7,45 @@
   padding: 0;
 }
 
+.footer {
+  margin-top: 7%;
+  color: #471B00;
+}
+
+.footer a{
+  color: #/*009194*/;
+}
+
+.footer img {
+  vertical-align: middle;
+  width: 5%;
+  height: 5%;
+}
+
 .giant {
   font-size: 8em;
   font-weight: bold;
   text-align: center;
+  color: #471B00;
+
 }
 
 body {
   text-align: center;
-  padding: 10px;
   font-family: sans-serif;
+  background: #16DCE0;
 }
 table{
-    margin: 2% 33% 2% 33% ;
-
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    padding: 3px;
+    background: #C1D2D9;
 }
+/*
+td {
+  #008083
+}*/
 /*
 * Skeleton V2.0.4
 * Copyright 2014, Dave Gamache

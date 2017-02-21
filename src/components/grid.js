@@ -14,13 +14,10 @@ constructor(props){
 
 handleClick(event){
   event.preventDefault()
-  // console.log(event.target)
-  // console.log(this)
   if (event.type === "contextmenu"){
     this.props.flagSquare(this.props.row, this.props.column)
     this.props.flagCount(this.props)
-    // flagCount has to be a toggle not straight math
-}
+  }
   else {  
     if (this.props.me.clicked === false) {
       this.props.clickSquare(this.props.row, this.props.column)
@@ -38,8 +35,7 @@ handleClick(event){
         }
       }) 
     }
-
-    }
+  }
 this.props.takeTurn()
 
 }
@@ -48,11 +44,12 @@ this.props.takeTurn()
 
 render(){
 let flex = this.props.flex
-let lines =  flex.map((line, lineIndex)=>{
-            return <Line line={line} row={lineIndex} key={lineIndex} handleClick={this.handleClick} />
-              })
+let lines =  
+  flex.map((line, lineIndex)=>{
+      return <Line line={line} row={lineIndex} key={lineIndex} handleClick={this.handleClick} />
+    })
 
-return ( <table className="container"> {lines} </table> )
+return ( <table className="container"><tbody>{lines}</tbody></table> )
 }
 
 

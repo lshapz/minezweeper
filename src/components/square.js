@@ -99,9 +99,7 @@ render(){
 
   return (
   <td onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
-    
-    <img className="box" src={image} />
-    
+    <img className="box" src={image} />  
   </td>
 
   )}
