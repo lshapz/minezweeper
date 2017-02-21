@@ -12,7 +12,6 @@ export const flagSquare = (row, column) =>{
 
 
 export const clickSquare = (row, column) =>{
-  
   return {type: 'CLICK SQUARE', payload: [row, column]}
 }
 
@@ -40,7 +39,7 @@ export const gridReducer = (state = grid, action) => {
       //   return item.filter((objects)=>
       //     {
       //       return objects.row === action.payload[0] && objects.column === action.payload[1]})})
-      let foo = state[action.payload[0]-1][action.payload[1]-1]
+      let foo = state[action.payload[0]][action.payload[1]]
 
       let flag_state =  state.map(item=>{
         return item.map(next=>{
@@ -50,27 +49,60 @@ export const gridReducer = (state = grid, action) => {
             return next
             })
         })
-      debugger
+      // debugger
       return flag_state;
     case 'CLICK SQUARE':
       // let bar = state.forEach((item)=>{
       //   return item.filter((objects)=>{
 
       //     return objects.row === action.payload[0] && objects.column === action.payload[1]})})
-      let bar = state[action.payload[0]-1][action.payload[1]-1]
-      let click_state =  state.map(item=>{
-        return item.map(next=>{
-            if (next == bar)
-              {
-                next.clicked = true}
-            return next
-            })
-        })
-      if (click_state === state)
-        {console.log('whoops')}
+
+      // debugger
+      // let tried = []
+    
+      let click_state = clickedMe(action.payload, state)
       
       return click_state;
     default:
       return state;
   }
 };
+
+const clickedMe = (array, state) =>{
+  // debugger
+      let bar = state[array[0]][array[1]]
+      let baz = [bar]
+
+      if (bar.text === 0)
+          {
+              let row = array[0]
+              let column = array[1]
+              let neighbors = [
+              [row-1, column-1], [row-1, column], [row-1, column+1], 
+              [row, column-1], [row, column+1],
+              [row+1, column-1], [row+1, column], [row+1, column+1]
+              ]
+
+
+      neighbors.forEach(arr=>
+      {
+      if (state[arr[0]] && state[arr[0]][arr[1]] && state[arr[0]][arr[1]].text !== 'mine')
+      {
+        baz.push(state[arr[0]][arr[1]])
+      }
+      })
+
+      }
+      
+
+      let click_state =  state.map(item=>{
+        return item.map(next=>{
+            if (baz.includes(next))
+              {next.clicked = true}
+             
+            return next
+            })
+        })
+
+      return click_state
+}

@@ -19,11 +19,21 @@ export const flagCount = () => {
 }
 
 
-export const gameReducer = (state = {playing: true, mines: 0}, action) => {
+export const takeTurn = () => {
+  return {
+    type: 'NEXT TURN'
+  };
+}
+
+
+export const gameReducer = (state = {playing: true, mines: 0, turn: 0}, action) => {
   switch (action.type) {
     case 'RENDER GRID':
       let newMine = state.mines += 1
       return {...state, mines: newMine}
+    case 'NEXT TURN':
+      let newTurn = state.turn +=1 
+    return {...state, turn: newTurn}
     case 'END GAME':
       console.log("game over")
       return {...state, playing: false } ;

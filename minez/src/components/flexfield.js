@@ -13,9 +13,9 @@ let newer_array = array.map((item, index)=>{
  let mineB =  Math.floor((Math.random() * width))
 
  item[mineA] = "mine"
- if (array.indexOf(item) % 2 === 0){
-  // HTK this should not be hardcoded 
-  item[mineB] = "mine"}
+ // if (array.indexOf(item) % 2 === 0){
+ //  // HTK this should not be hardcoded 
+ //  item[mineB] = "mine"}
 
  if (height * width > 200)
  {let mineC =  Math.floor((Math.random() * width))
@@ -205,7 +205,7 @@ else if (height * width > 300)
 
 let newest_array = new_array.map((line, indexA)=>{
   return line.map((cell, indexB)=>{
-    return {row: indexA + 1, column: indexB + 1, flag: false, mine: cell === 'mine' ? true : false, clicked: false, text: cell }
+    return {row: indexA, column: indexB, flag: false, mine: cell === 'mine' ? true : false, clicked: false, text: cell }
   })
 })
 
