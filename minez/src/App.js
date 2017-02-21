@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Grid from './components/Grid.js'
+import Grid from './components/grid.js'
 import Counter from './components/Counter.js'
 
 class App extends Component {
