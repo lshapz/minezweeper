@@ -6,7 +6,7 @@ const Counter = (props) => {
 
   
     if (props.game.playing === false) {
-      return (<div className="giant"><img src={clock} /></div>)
+      return (<div className="giant"><img src={clock} />GAME OVER</div>)
     }
     else if (props.game.mines === 1){
      return( <div className="giant"><img src={clock}  />{props.game.mines} mine remaining</div>)

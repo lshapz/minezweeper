@@ -17,85 +17,47 @@ import imageflag from './images/flag.png'
 import imagemine from './images/mine.png'
 
 
+
 class Square extends React.Component {
 
 constructor(props){
   
   super(props)
-  // debugger
-  // this.state = this.props.me
-  // if (this.props.forData.text === "mine")
-  //   { this.props.mineCount() 
-  //     // console.log(this.state.id)
-  //   }
-  // this needs to be moved into Gridmaker or something 
+  if (this.props.me.text === "mine"){
+    this.props.mineCount()
+  }
 
 }
 
-// handleClick(event){
-//   event.preventDefault()
-//   console.log(this.props.me)
-//   if (event.type === "contextmenu"){
-//     this.props.flagSquare(this.props.row, this.props.column)
-//     // this.setState({flagged: true})
-//     // this.props.flagCount()
-//     // flagCount has to be a toggle not straight math
-//       this.props.takeTurn()
 
-// }
-//   else {  
-//     // debugger
-//     this.props.clickSquare(this.props.row, this.props.column)
-//     // this.setState({clicked: true})
-//     if (this.props.me.text === 'mine') {
-//       this.props.endGame()
 
-//     }
-//       this.props.takeTurn()
 
-// }
-// }
-
-showMe(show) {
-
-    let image
-    switch (show){
-      case 0:
-        image = image0;
-      case 1:
-        image = image1;
-      case 2:
-        image = image2;
-      case 3:
-        image = image3;
-      case 4:
-        image = image4;
-      case 5:
-        image = image5;
-      case 6:
-        image = image6;
-      case 7:
-        image = image7;
-      case 8:
-        image = image8;
-      case 'X':
-        image = imageX;
-      case 'flag':
-        image = imageflag;
-      case 'mine':
-        image = imagemine;
-      default:
-        image = imageX;
+componentWillUpdate(){
+    if (this.props.me.text === 0 && this.props.me.clicked === true) 
+    {
+              let row = this.props.me.row
+              let column = this.props.me.column
+              let neighbors = [
+              [row-1, column-1], [row-1, column], [row-1, column+1], 
+              [row, column-1], [row, column+1],
+              [row+1, column-1], [row+1, column], [row+1, column+1]
+              ]
+      neighbors.forEach(arr=>
+      {
+      if (this.props.flex[arr[0]] && this.props.flex[arr[0]][arr[1]] && this.props.flex[arr[0]][arr[1]].text !== 'mine' && this.props.flex[arr[0]][arr[1]].clicked === false)
+      {
+        this.props.clickSquare(arr[0], arr[1])
       }
+      })
 
-return  <img src={image} />
+    }
+
 
 }
+
 
 render(){
-    // {this.showMe(show)}
-
-    let show = "X"
+  let show = "X"
     if (this.props.me.clicked === true) {
         show = this.props.me.text
       }
@@ -106,12 +68,55 @@ render(){
     else if (this.props.me.flag === true ) {
       show = "flag"
     }
-
-
+    
+ let image
+  
+  switch (show){
+      case 0:
+        image = image0;
+        break;
+      case 1:
+        image = image1;
+        break;
+      case 2:
+        image = image2;
+        break;
+      case 3:
+        image = image3;
+        break;
+      case 4:
+        image = image4;
+        break;
+      case 5:
+        image = image5;
+        break;
+      case 6:
+        image = image6;
+        break;
+      case 7:
+        image = image7;
+        break;
+      case 8:
+        image = image8;
+        break;
+      case 'X':
+        image = imageX;
+        break;
+      case 'flag':
+        image = imageflag;
+        break;
+      case 'mine':
+        image = imagemine;
+        break;
+      default:
+        image = imageX
+      }
 
   return (
   <div className="one column bold" onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
-  {show}
+    
+    <img className="box" src={image} />
+    
   </div>
 
   )}
@@ -123,7 +128,7 @@ function mapStateToProps(state, props){
   // let this_square = state.gridReducer.filter(item=>{
   //   return item.row === props.row && item.column === props.column
   // })
-  return {game: state.gameReducer, me: foo, flex: state.gridReducer} 
+  return {game: state.gameReducer, me: foo, img: foo.image, flex: state.gridReducer} 
 }
 
 

@@ -12,8 +12,9 @@ export const mineCount = () => {
   };
 }
 
-export const flagCount = () => {
+export const flagCount = (flagged) => {
   return {
+    payload: flagged.me.flag,
     type: 'MINE FLAGGED'
   };
 }
@@ -37,8 +38,12 @@ export const gameReducer = (state = {playing: true, mines: 0, turn: 0}, action) 
     case 'END GAME':
       console.log("game over")
       return {...state, playing: false } ;
-    case 'MINE FLAGGED': 
-      let flag = state.mines -= 1
+    case 'MINE FLAGGED':
+      let flag 
+      if (action.payload === true)
+      {flag = state.mines -= 1}
+      else if (action.payload === false)
+      {flag = state.mines += 1}
       return {...state, mines: flag }
     default:
       return state;

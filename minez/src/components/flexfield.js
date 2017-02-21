@@ -1,3 +1,4 @@
+
 function grid (height, width){
 
 var array = [];
@@ -13,9 +14,9 @@ let newer_array = array.map((item, index)=>{
  let mineB =  Math.floor((Math.random() * width))
 
  item[mineA] = "mine"
- // if (array.indexOf(item) % 2 === 0){
- //  // HTK this should not be hardcoded 
- //  item[mineB] = "mine"}
+ if (array.indexOf(item) % 2 === 0){
+  // HTK this should not be hardcoded 
+  item[mineB] = "mine"}
 
  if (height * width > 200)
  {let mineC =  Math.floor((Math.random() * width))

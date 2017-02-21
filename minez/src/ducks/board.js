@@ -1,9 +1,18 @@
 import Gridmaker from '../components/flexfield'
 import {mineCount} from './game'
+import image0 from '../components/images/0.png'
+import image1 from '../components/images/1.png'
+import image2 from '../components/images/2.png'
+import image3 from '../components/images/3.png'
+import image4 from '../components/images/4.png'
+import image5 from '../components/images/5.png'
+import image6 from '../components/images/6.png'
+import image7 from '../components/images/7.png'
+import image8 from '../components/images/8.png'
+import imageX from '../components/images/X.png'
+import imageflag from '../components/images/flag.png'
+import imagemine from '../components/images/mine.png'
 
-// export const defineSquare = (input) => {
-//   return {type: 'NEW SQUARE', payload: input }
-// }
 
 
 export const flagSquare = (row, column) =>{
@@ -15,7 +24,7 @@ export const clickSquare = (row, column) =>{
   return {type: 'CLICK SQUARE', payload: [row, column]}
 }
 
-let grid = Gridmaker(8, 8)
+let grid = Gridmaker(12, 12)
 
 function countMines(){
   return function(dispatch, grid){
@@ -32,34 +41,22 @@ function countMines(){
 
 export const gridReducer = (state = grid, action) => {
   switch (action.type) {
-    // case 'NEW SQUARE':
-    //   return state.concat(action.payload)
     case 'FLAG SQUARE':
-      // let foo = state.filter((item)=>{
-      //   return item.filter((objects)=>
-      //     {
-      //       return objects.row === action.payload[0] && objects.column === action.payload[1]})})
       let foo = state[action.payload[0]][action.payload[1]]
 
       let flag_state =  state.map(item=>{
         return item.map(next=>{
-            if (next === foo)
+          if (next === foo)
               {
                 next.flag = !next.flag}
+
             return next
             })
         })
       // debugger
       return flag_state;
     case 'CLICK SQUARE':
-      // let bar = state.forEach((item)=>{
-      //   return item.filter((objects)=>{
 
-      //     return objects.row === action.payload[0] && objects.column === action.payload[1]})})
-
-      // debugger
-      // let tried = []
-    
       let click_state = clickedMe(action.payload, state)
       
       return click_state;
@@ -68,37 +65,18 @@ export const gridReducer = (state = grid, action) => {
   }
 };
 
-const clickedMe = (array, state) =>{
+
+
+var clickedMe = (array, state) => { 
   // debugger
       let bar = state[array[0]][array[1]]
-      let baz = [bar]
-
-      if (bar.text === 0)
-          {
-              let row = array[0]
-              let column = array[1]
-              let neighbors = [
-              [row-1, column-1], [row-1, column], [row-1, column+1], 
-              [row, column-1], [row, column+1],
-              [row+1, column-1], [row+1, column], [row+1, column+1]
-              ]
-
-
-      neighbors.forEach(arr=>
-      {
-      if (state[arr[0]] && state[arr[0]][arr[1]] && state[arr[0]][arr[1]].text !== 'mine')
-      {
-        baz.push(state[arr[0]][arr[1]])
-      }
-      })
-
-      }
-      
 
       let click_state =  state.map(item=>{
         return item.map(next=>{
-            if (baz.includes(next))
-              {next.clicked = true}
+            if (bar === next)
+              {next.clicked = true
+              
+              }
              
             return next
             })
