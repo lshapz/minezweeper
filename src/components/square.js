@@ -26,6 +26,38 @@ constructor(props){
   if (this.props.me.text === "mine"){
     this.props.mineCount()
   }
+  this.clickedSquare = this.clickedSquare.bind(this)
+
+}
+
+
+clickedSquare(){
+  console.log(this)
+  let row = this.props.row
+  let column = this.props.column
+  let number = this.props.me.text
+  let count = 0
+  let newClickers = []
+  let neighbors = [
+                [row-1, column-1], [row-1, column], [row-1, column+1], 
+                [row, column-1], [row, column+1],
+                [row+1, column-1], [row+1, column], [row+1, column+1]
+                ]
+  neighbors.forEach(subArray=>{
+    if (this.props.flex[subArray[0]] && this.props.flex[subArray[0]][subArray[1]] && this.props.flex[subArray[0]][subArray[1]].clicked === false && this.props.flex[subArray[0]][subArray[1]].flag !== true){
+      newClickers.push(subArray)
+    }
+    else if (this.props.flex[subArray[0]] && this.props.flex[subArray[0]][subArray[1]] && this.props.flex[subArray[0]][subArray[1]].clicked === false && this.props.flex[subArray[0]][subArray[1]].flag === true){
+      count +=1 
+    }
+  })
+  // debugger 
+  if (count === number){
+    return newClickers
+  }
+  else {
+    return null 
+  }
 
 }
 
@@ -62,48 +94,8 @@ render(){
     else if (this.props.me.flag === true ) {
       show = "flag"
     }  
-  let image
-  // https://hackernoon.com/rethinking-javascript-eliminate-the-switch-statement-for-better-code-5c81c044716d#.ugl20fsep
-  switch (show){
-      case 0:
-        image = image0;
-        break;
-      case 1:
-        image = image1;
-        break;
-      case 2:
-        image = image2;
-        break;
-      case 3:
-        image = image3;
-        break;
-      case 4:
-        image = image4;
-        break;
-      case 5:
-        image = image5;
-        break;
-      case 6:
-        image = image6;
-        break;
-      case 7:
-        image = image7;
-        break;
-      case 8:
-        image = image8;
-        break;
-      case 'X':
-        image = imageX;
-        break;
-      case 'flag':
-        image = imageflag;
-        break;
-      case 'mine':
-        image = imagemine;
-        break;
-      default:
-        image = imageX
-      }
+  let imageSource = { 0: image0, 1: image1, 2: image2, 3: image3, 4: image4, 5: image5, 6: image6, 7: image7, 8: image8, 'X': imageX, 'flag': imageflag, 'mine': imagemine }
+  let image = imageSource[show]
 
   return (
   <td onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
@@ -117,8 +109,8 @@ render(){
 }
 
 function mapStateToProps(state, props){
-  let foo = state.gridReducer[props.row][props.column]
-  return {game: state.gameReducer, me: foo, flex: state.gridReducer} 
+  let square = state.gridReducer[props.row][props.column]
+  return {game: state.gameReducer, me: square, flex: state.gridReducer} 
 }
 
 

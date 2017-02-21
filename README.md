@@ -3,9 +3,7 @@ Welcome to my React/Redux implementation of Minesweeper!
 
 remaining todos:
 
-  1) if you click on number and you have flagged the same # of adjacent mines to the number, reveal surroundings
-
-    a check on each clickSquare dispatch, then iterate through nearby looking for flags, if the # matches iterate through non-flagged and dispatch clickSquare for them 
+  1) if you click on number and it has as many unclicked neighbors as you do remaining flags, flag those automatically 
 
   2) timer 
 
