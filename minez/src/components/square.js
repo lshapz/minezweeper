@@ -113,11 +113,11 @@ render(){
       }
 
   return (
-  <div className="one column bold" onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
+  <td onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
     
     <img className="box" src={image} />
     
-  </div>
+  </td>
 
   )}
 

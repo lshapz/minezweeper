@@ -12,7 +12,7 @@ let squares =
 
 return (
 
- <div className="row"> {squares} </div>  )
+ <tr className="row"> {squares} </tr>  )
 
 
 

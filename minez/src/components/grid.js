@@ -41,7 +41,7 @@ let lines =  flex.map((line, lineIndex)=>{
             return <Line line={line} row={lineIndex} key={lineIndex} handleClick={this.handleClick} />
               })
 
-return ( <div className="container"> {lines} </div> )
+return ( <table className="container"> {lines} </table> )
 }
 
 

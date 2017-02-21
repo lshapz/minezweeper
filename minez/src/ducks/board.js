@@ -1,19 +1,5 @@
 import Gridmaker from '../components/flexfield'
 import {mineCount} from './game'
-import image0 from '../components/images/0.png'
-import image1 from '../components/images/1.png'
-import image2 from '../components/images/2.png'
-import image3 from '../components/images/3.png'
-import image4 from '../components/images/4.png'
-import image5 from '../components/images/5.png'
-import image6 from '../components/images/6.png'
-import image7 from '../components/images/7.png'
-import image8 from '../components/images/8.png'
-import imageX from '../components/images/X.png'
-import imageflag from '../components/images/flag.png'
-import imagemine from '../components/images/mine.png'
-
-
 
 export const flagSquare = (row, column) =>{
   return {type: 'FLAG SQUARE', payload: [row, column]}
@@ -33,32 +19,17 @@ function countMines(){
           if (further.text === "mine"){
             dispatch(mineCount())
           }
-
       })
     })}
   }
 
-
 export const gridReducer = (state = grid, action) => {
   switch (action.type) {
     case 'FLAG SQUARE':
-      let foo = state[action.payload[0]][action.payload[1]]
-
-      let flag_state =  state.map(item=>{
-        return item.map(next=>{
-          if (next === foo)
-              {
-                next.flag = !next.flag}
-
-            return next
-            })
-        })
-      // debugger
+      let flag_state =  flaggedMe(action.payload, state)
       return flag_state;
     case 'CLICK SQUARE':
-
       let click_state = clickedMe(action.payload, state)
-      
       return click_state;
     default:
       return state;
@@ -66,21 +37,27 @@ export const gridReducer = (state = grid, action) => {
 };
 
 
+const flaggedMe = (array, state) => {
+    let square = state[array[0]][array[1]]
+    let flag_state =  state.map(item=>{
+          return item.map(next=>{
+            if (next === square)
+                {next.flag = !next.flag}
+              return next
+              })
+          })
+        return flag_state;
 
-var clickedMe = (array, state) => { 
-  // debugger
-      let bar = state[array[0]][array[1]]
+} 
 
+const clickedMe = (array, state) => { 
+      let square = state[array[0]][array[1]]
       let click_state =  state.map(item=>{
         return item.map(next=>{
-            if (bar === next)
-              {next.clicked = true
-              
-              }
-             
+            if (square === next)
+              {next.clicked = true}
             return next
             })
         })
-
       return click_state
 }

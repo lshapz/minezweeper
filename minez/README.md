@@ -1,26 +1,23 @@
-implementing minesweeper in react/redux
+Welcome to my React/Redux implementation of Minesweeper! 
 
-I need to refactor this so that clicks to Square are passed up to Grid so that the whole dude will rerender. 
-and I need Gridmaker to happen in the reducer/initial_state maybe?
 
-  1) if you click on a blank square it reveals all nearby blanks and the numbers around it (findFriends in nearby.js?)
+remaining todos:
 
-  2) if you click on number and you have flagged the same # of adjacent mines to the number, reveal surroundings (flaggedUp in nearby.js?)
+  1) if you click on number and you have flagged the same # of adjacent mines to the number, reveal surroundings
 
-  3) in general, figure out a better way to determine adjacentness than the complicated lineIndex-1 cellIndex-1 ??? 
+    a check on each clickSquare dispatch, then iterate through nearby looking for flags, if the # matches iterate through non-flagged and dispatch clickSquare for them 
 
-  4) if you click on a mine, prevents all future clicks except on 
+  2) timer 
 
-  5) restart button
+    restart button ? 
+
+  3) complexity options 
+
+    probably needs its own reducer, or maybe part of gameReducer? 
+
+  4) mineCount is kind of a hack, as is mine distribution in Gridmaker
+
+
   
-  6) make the box more like 12x30 instead of 10x10, 10x10 is tiny as heck 
-
-    I only say 12 because I'm using skeleton
-
-    should the grid be a table instead of a CSS grid? or just a different CSS grid that accomodates multiples of 5
-
-
-Bug HTK:
-  if you flag something then click it again to make it unflagged, the flagged count doesn't go down (make that handleClick even more complex)
-
+image credit to:
 http://opengameart.org/content/minesweeper-tile-set-lazarus image credit 
