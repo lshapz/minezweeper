@@ -15,6 +15,14 @@ remaining todos:
 
   4) mineCount is kind of a hack, as is mine distribution in Gridmaker
 
+  5) add instructions! 
+
+
+bugs: 
+
+  if you right click on a revealed square it changes the mineCount/flagCount
+
+
 
   
 image credit to:
