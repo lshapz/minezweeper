@@ -18,7 +18,7 @@ var array = [];
   // HTK this should not be hardcoded 
   item[mineB] = "mine"}
 
- if (height * width > 200)
+ if (height * width > 260)
  {let mineC =  Math.floor((Math.random() * width))
  let mineD =  Math.floor((Math.random() * width))
 

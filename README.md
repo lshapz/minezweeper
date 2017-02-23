@@ -7,20 +7,22 @@ remaining todos:
 
   2) timer 
 
-    restart button ? 
+    restart button ? - technically clicking a difficulty does this  
 
-  3) complexity options 
+  3) mineCount is kind of a hack, as is mine distribution in Gridmaker
 
-    probably needs its own reducer, or maybe part of gameReducer? 
+  4) add instructions! 
 
-  4) mineCount is kind of a hack, as is mine distribution in Gridmaker
+  5) high scores?
 
-  5) add instructions! 
+    top 15 for each difficulty?
+
+    or personal: IP based or cookie based or make account?
 
 
 bugs: 
 
-  if you right click on a revealed square it changes the mineCount/flagCount
+  if you right click on a revealed square it changes the mineCount/flagCount -- possibly fixed? this is why I should have tests 
 
 
 
