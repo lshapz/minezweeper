@@ -1,8 +1,7 @@
 import React from 'react'
-import {endGame, mineCount, flagCount, takeTurn} from '../ducks/game.js'
+import {endGame, takeTurn} from '../ducks/game.js'
 import { connect } from 'react-redux'
-import {findFriends} from '../ducks/nearby.js'
-import {defineSquare, flagSquare, clickSquare} from '../ducks/board.js'
+import {defineSquare, flagSquare, clickSquare, flagCount} from '../ducks/board.js'
 import image0 from './images/0.png'
 import image1 from './images/1.png'
 import image2 from './images/2.png'
@@ -23,12 +22,17 @@ class Square extends React.Component {
 constructor(props){
   
   super(props)
-  if (this.props.me.text === "mine"){
-    this.props.mineCount()
-  }
   this.clickedSquare = this.clickedSquare.bind(this)
-
+    
 }
+
+// componentWillReceiveProps(nextProps){
+//   if (nextProps.me.mine === true)
+//   {
+//     this.props.mineCount(1)
+//   }
+  
+// }
 
 
 clickedSquare(){
@@ -76,9 +80,8 @@ componentWillUpdate(){
           this.props.clickSquare(arr[0], arr[1])
         }
       })
-
     }
-
+  // debugger
 
 }
 
@@ -107,9 +110,9 @@ render(){
 }
 
 function mapStateToProps(state, props){
-  let square = state.gridReducer[props.row][props.column]
-  return {game: state.gameReducer, me: square, flex: state.gridReducer} 
+  let square = state.gridReducer.grid[props.row][props.column]
+  return {game: state.gameReducer, me: square, flex: state.gridReducer.grid} 
 }
 
 
-export default connect(mapStateToProps, {takeTurn, clickSquare, endGame, defineSquare, flagSquare, findFriends, mineCount, flagCount})(Square)
+export default connect(mapStateToProps, {takeTurn, clickSquare, endGame, defineSquare, flagSquare, flagCount})(Square)

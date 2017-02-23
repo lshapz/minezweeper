@@ -1,5 +1,4 @@
 import Gridmaker from '../components/flexfield'
-import {mineCount} from './game'
 
 export const flagSquare = (row, column) =>{
   return {type: 'FLAG SQUARE', payload: [row, column]}
@@ -10,29 +9,46 @@ export const clickSquare = (row, column) =>{
   return {type: 'CLICK SQUARE', payload: [row, column]}
 }
 
+export const makeHard = (hardness) =>{
+  return {type: 'CHANGE DIFFICULTY', payload: hardness}
+}
 
 
-let grid = Gridmaker(15, 25)
+// export const mineCount = (number) => {
+//   return {type: 'COUNT MINES', payload: number};
+// }
 
-function countMines(){
-  return function(dispatch, grid){
-    grid.forEach ((item)=>{
-      item.forEach((further)=>{
-          if (further.text === "mine"){
-            dispatch(mineCount())
-          }
-      })
-    })}
-  }
+export const resetMines = () => {
+  return {type: 'RESET MINES'}
+}
 
-export const gridReducer = (state = grid, action) => {
+export const flagCount = (flagged) => {
+  return {type: 'MINE FLAGGED', payload: flagged.me.flag}
+}
+
+
+
+export const gridReducer = (state = {grid: [], mines: 0}, action) => {
   switch (action.type) {
+    case 'RESET MINES':
+      let mine = 0 
+      return {...state, mines: 0}
+    case 'MINE FLAGGED':
+      let flag 
+      if (action.payload === true)
+        {flag = state.mines -= 1}
+      else if (action.payload === false)
+        {flag = state.mines += 1}
+      return {...state, mines: flag }
+    case 'CHANGE DIFFICULTY':
+      let new_state = gridSizer(action.payload)
+      return {...state, grid: new_state[0], mines: new_state[1]} 
     case 'FLAG SQUARE':
       let flag_state =  flaggedMe(action.payload, state)
-      return flag_state;
+      return {...state, grid: flag_state};
     case 'CLICK SQUARE':
       let click_state = clickedMe(action.payload, state)
-      return click_state;
+      return {...state, grid: click_state};
     default:
       return state;
   }
@@ -40,8 +56,8 @@ export const gridReducer = (state = grid, action) => {
 
 
 const flaggedMe = (array, state) => {
-    let square = state[array[0]][array[1]]
-    let flag_state =  state.map(item=>{
+    let square = state.grid[array[0]][array[1]]
+    let flag_state =  state.grid.map(item=>{
           return item.map(next=>{
             if (next === square)
                 {next.flag = !next.flag}
@@ -53,8 +69,8 @@ const flaggedMe = (array, state) => {
 } 
 
 const clickedMe = (array, state) => { 
-      let square = state[array[0]][array[1]]
-      let click_state =  state.map(item=>{
+      let square = state.grid[array[0]][array[1]]
+      let click_state =  state.grid.map(item=>{
         return item.map(next=>{
             if (square === next)
               {next.clicked = true}
@@ -63,3 +79,21 @@ const clickedMe = (array, state) => {
         })
       return click_state
 }
+
+
+function gridSizer(difficulty){
+  let grid
+  switch(difficulty) {
+    case 'easy':
+      grid = Gridmaker(10, 10)
+      break;
+    case 'medium':
+      grid = Gridmaker(16, 16)
+      break;
+    case 'hard':
+      grid = Gridmaker(16, 32)
+      break;
+  }
+  return grid
+}
+

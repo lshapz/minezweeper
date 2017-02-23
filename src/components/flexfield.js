@@ -207,7 +207,10 @@ let newest_array = new_array.map((line, indexA)=>{
   })
 })
 
-return newest_array
+let foo = newest_array.reduce((a,b)=>{return a.concat(b)})
+let bar = foo.filter(square=>{return square.mine === true})
+
+return [newest_array, bar.length]
 }
 
 export default grid
