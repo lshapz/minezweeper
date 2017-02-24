@@ -11,20 +11,11 @@ remaining todos:
 
   3) mineCount is kind of a hack, as is mine distribution in Gridmaker
 
-  4) add instructions! 
-
-  5) high scores?
+  4) high scores?
 
     top 15 for each difficulty?
 
     or personal: IP based or cookie based or make account?
-
-
-bugs: 
-
-  if you right click on a revealed square it changes the mineCount/flagCount -- possibly fixed? this is why I should have tests 
-
-
 
   
 image credit to:
