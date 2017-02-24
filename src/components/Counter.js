@@ -5,10 +5,13 @@ import clock from './images/clock.png'
 const Counter = (props) => {
   
     if (props.game.playing === false) {
-      return (<div className="giant">GAME OVER</div>)
+      return (<div className="giant">YOU LOSE!</div>)
     }
-    else if (props.game.mines === 1){
+    else if (props.grid.mines === 1){
      return( <div className="giant">{props.grid.mines} mine remaining</div>)
+    }
+    else if (props.grid.mines === 0){
+      return(<div className="giant">YOU WIN!</div>)
     }
     else {
       return (<div className="giant">{props.grid.mines} mines remaining</div>)

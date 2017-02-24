@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {makeHard, resetMines} from '../ducks/board.js'
+import {resetGame} from '../ducks/game.js'
 
 class Form extends React.Component {
 
@@ -9,18 +10,15 @@ constructor(props){
   this.handleOnChange = this.handleOnChange.bind(this)
 }
 
-
 handleOnChange(event){
   this.props.resetMines()
+  this.props.resetGame()
   this.props.makeHard(event.target.value)
-
-
 }
+
 componentWillMount(){
   this.props.makeHard('easy')
 }
-
-
 
 render(){
 return (
@@ -40,4 +38,4 @@ function mapStateToProps(state, props){
 }
 
 // export default Form
-export default connect(mapStateToProps, {resetMines, makeHard})(Form)
+export default connect(mapStateToProps, {resetMines, makeHard, resetGame})(Form)

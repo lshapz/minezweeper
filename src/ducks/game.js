@@ -12,6 +12,13 @@ export const takeTurn = () => {
   };
 }
 
+export const resetGame = () => {
+  return {
+    type: 'RESET GAME'
+  };
+}
+
+
 
 export const gameReducer = (state = {playing: true, turn: 0}, action) => {
   switch (action.type) {
@@ -22,6 +29,8 @@ export const gameReducer = (state = {playing: true, turn: 0}, action) => {
     case 'END GAME':
       console.log("game over")
       return {...state, playing: false } ;
+    case 'RESET GAME':
+      return {playing: true, turn: 0}
     default:
       return state;
   }
