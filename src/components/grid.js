@@ -56,7 +56,7 @@ let lines =
       return <Line line={line} row={lineIndex} key={lineIndex} handleClick={this.handleClick} />
     })
 
-return ( <table className="container"><tbody>{lines}</tbody></table> )
+return ( <table className="table"><tbody>{lines}</tbody></table> )
 }
 
 

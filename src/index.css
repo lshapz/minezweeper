@@ -1,6 +1,43 @@
 .bold {
   font-weight: bold;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+}
+label{
+  color: #471B00;
+}
+button{
+  border-radius: 10px
+}
+
+.container{
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.container > div{
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
+}
+.container > div > div{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.container img{
+/*  width: 30%;
+  height: 30%;*/
+  align-self: center
+
+}
 
 .box {
   margin: 0 auto;
@@ -8,12 +45,8 @@
 }
 
 .footer {
-  margin-top: 7%;
+  margin-top: 2%;
   color: #471B00;
-}
-
-.footer a {
-  color: #/*009194*/;
 }
 
 .footer img {
