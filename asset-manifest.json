@@ -1,6 +1,10 @@
 {
-  "main.css": "static/css/main.3276382d.css",
-  "main.css.map": "static/css/main.3276382d.css.map",
-  "main.js": "static/js/main.71e49b96.js",
-  "main.js.map": "static/js/main.71e49b96.js.map"
+  "main.css": "static/css/main.d2560a33.css",
+  "main.css.map": "static/css/main.d2560a33.css.map",
+  "main.js": "static/js/main.21874c97.js",
+  "main.js.map": "static/js/main.21874c97.js.map",
+  "static/media/01-click.gif": "static/media/01-click.e2fb44e6.gif",
+  "static/media/02-flag.gif": "static/media/02-flag.a643f6f1.gif",
+  "static/media/03-reveal.gif": "static/media/03-reveal.65ab9839.gif",
+  "static/media/04-lose.gif": "static/media/04-lose.63244315.gif"
 }
