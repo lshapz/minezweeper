@@ -8,6 +8,7 @@ remaining todos:
   2) timer 
 
     restart button ? - technically clicking a difficulty does this  
+    https://github.com/reactjs/react-timer-mixin
 
   3) mineCount is kind of a hack, as is mine distribution in Gridmaker
 
