@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import clock from './images/clock.png'
+// import clock from './images/clock.png'
 
 const Counter = (props) => {
   

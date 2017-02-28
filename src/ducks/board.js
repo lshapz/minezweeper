@@ -23,34 +23,6 @@ export const flagCount = (flagged) => {
 }
 
 
-
-export const gridReducer = (state = {grid: [], mines: 0}, action) => {
-  switch (action.type) {
-    case 'RESET MINES':
-      let mine = 0 
-      return {...state, mines: 0}
-    case 'MINE FLAGGED':
-      let flag 
-      if (action.payload === true)
-        {flag = state.mines -= 1}
-      else if (action.payload === false)
-        {flag = state.mines += 1}
-      return {...state, mines: flag }
-    case 'CHANGE DIFFICULTY':
-      let new_state = gridSizer(action.payload)
-      return {...state, grid: new_state[0], mines: new_state[1]} 
-    case 'FLAG SQUARE':
-      let flag_state =  flaggedMe(action.payload, state)
-      return {...state, grid: flag_state};
-    case 'CLICK SQUARE':
-      let click_state = clickedMe(action.payload, state)
-      return {...state, grid: click_state};
-    default:
-      return state;
-  }
-};
-
-
 const flaggedMe = (array, state) => {
     let square = state.grid[array[0]][array[1]]
     let flag_state =  state.grid.map(item=>{
@@ -89,7 +61,37 @@ function gridSizer(difficulty){
     case 'hard':
       grid = Gridmaker(16, 32)
       break;
+    default: 
+      grid = Gridmaker(10, 10)
   }
   return grid
 }
+
+
+export const gridReducer = (state = {grid: [], mines: 0}, action) => {
+  switch (action.type) {
+    case 'RESET MINES':
+      let mine = 0
+      return {...state, mines: mine}
+    case 'MINE FLAGGED':
+      let flag 
+      if (action.payload === true)
+        {flag = state.mines -= 1}
+      else if (action.payload === false)
+        {flag = state.mines += 1}
+      return {...state, mines: flag }
+    case 'CHANGE DIFFICULTY':
+      let new_state = gridSizer(action.payload)
+      return {...state, grid: new_state[0], mines: new_state[1]} 
+    case 'FLAG SQUARE':
+      let flag_state =  flaggedMe(action.payload, state)
+      return {...state, grid: flag_state};
+    case 'CLICK SQUARE':
+      let click_state = clickedMe(action.payload, state)
+      return {...state, grid: click_state};
+    default:
+      return state;
+  }
+};
+
 

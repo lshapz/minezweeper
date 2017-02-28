@@ -1,29 +1,23 @@
 import React from 'react' 
-import Gridmaker from './flexfield'
-import Square from './square'
 import Line from './line'
 // import {createGrid} from '../ducks/board.js'
 import {connect} from 'react-redux' 
-import {flagSquare, clickSquare, flagCount} from '../ducks/board.js'
 class Grid extends React.Component {
 
-constructor(props){
-  super(props)
-}
 
 
 handleClick(event){
   event.preventDefault()
   if (event.type === "contextmenu"){
     if (this.props.me.flag === true || this.props.me.clicked === true)
-      {null}
+      {return}
     else {
     this.props.flagSquare(this.props.row, this.props.column)
     this.props.flagCount(this.props)}
   }
   else {  
     if (this.props.me.flag === true) {
-      null
+      return
     }
     else if (this.props.me.mine === true) {
       this.props.endGame()

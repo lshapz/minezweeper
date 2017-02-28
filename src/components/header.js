@@ -61,18 +61,18 @@ return (
 <div> <h3>How To Play!</h3>
 <div className="container">
   <div className="a">
-    <img src={image1} /> Click on a square to reveal
+    <img src={image1} alt="click"/> Click on a square to reveal
   </div> 
   <div className="b" >
-    <img src={image2} />
+    <img src={image2} alt="flag" />
     Right click on a square to flag it as a mine
   </div>
   <div className="d" >
-    <img src={image4} />
+    <img src={image4} alt="lose" />
     If you reveal a mine, you lose!
   </div>
   <div className="c" >
-    <img src={image3}/>
+    <img src={image3} alt="wow" />
     Click on a completed revealed square to reveal neighbors
   </div>
 </div>
