@@ -4,7 +4,6 @@ export const flagSquare = (row, column) =>{
   return {type: 'FLAG SQUARE', payload: [row, column]}
 }
 
-
 export const clickSquare = (row, column) =>{
   return {type: 'CLICK SQUARE', payload: [row, column]}
 }
@@ -13,7 +12,6 @@ export const makeHard = (hardness) =>{
   return {type: 'CHANGE DIFFICULTY', payload: hardness}
 }
 
-
 export const resetMines = () => {
   return {type: 'RESET MINES'}
 }
@@ -21,7 +19,6 @@ export const resetMines = () => {
 export const flagCount = (flagged) => {
   return {type: 'MINE FLAGGED', payload: flagged.me.flag}
 }
-
 
 const flaggedMe = (array, state) => {
     let square = state.grid[array[0]][array[1]]
@@ -33,8 +30,7 @@ const flaggedMe = (array, state) => {
               })
           })
         return flag_state;
-
-} 
+    } 
 
 const clickedMe = (array, state) => { 
       let square = state.grid[array[0]][array[1]]
@@ -46,7 +42,7 @@ const clickedMe = (array, state) => {
             })
         })
       return click_state
-}
+    }
 
 
 function gridSizer(difficulty){
@@ -65,7 +61,7 @@ function gridSizer(difficulty){
       grid = Gridmaker(10, 10)
   }
   return grid
-}
+  }
 
 
 export const gridReducer = (state = {grid: [], mines: 0}, action) => {
@@ -81,13 +77,13 @@ export const gridReducer = (state = {grid: [], mines: 0}, action) => {
         {flag = state.mines += 1}
       return {...state, mines: flag }
     case 'CHANGE DIFFICULTY':
-      let new_state = gridSizer(action.payload)
+      let new_state = gridSizer(action.payload);
       return {...state, grid: new_state[0], mines: new_state[1]} 
     case 'FLAG SQUARE':
-      let flag_state =  flaggedMe(action.payload, state)
+      let flag_state =  flaggedMe(action.payload, state);
       return {...state, grid: flag_state};
     case 'CLICK SQUARE':
-      let click_state = clickedMe(action.payload, state)
+      let click_state = clickedMe(action.payload, state);
       return {...state, grid: click_state};
     default:
       return state;

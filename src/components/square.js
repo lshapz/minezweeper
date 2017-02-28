@@ -15,28 +15,15 @@ import imageX from './images/X.png'
 import imageflag from './images/flag.png'
 import imagemine from './images/mine.png'
 
-
-
 class Square extends React.Component {
 
 constructor(props){
-  
   super(props)
   this.clickedSquare = this.clickedSquare.bind(this)
-    
 }
-
-// componentWillReceiveProps(nextProps){
-//   if (nextProps.me.mine === true)
-//   {
-//     this.props.mineCount(1)
-//   }
-  
-// }
 
 
 clickedSquare(){
-  console.log(this)
   let row = this.props.row
   let column = this.props.column
   let number = this.props.me.text
@@ -55,7 +42,6 @@ clickedSquare(){
       count +=1 
     }
   })
-  // debugger 
   if (count === number){
     return newClickers
   }
@@ -81,7 +67,6 @@ componentWillUpdate(){
         }
       })
     }
-  // debugger
 
 }
 

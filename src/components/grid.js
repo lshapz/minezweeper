@@ -1,10 +1,7 @@
 import React from 'react' 
 import Line from './line'
-// import {createGrid} from '../ducks/board.js'
 import {connect} from 'react-redux' 
 class Grid extends React.Component {
-
-
 
 handleClick(event){
   event.preventDefault()
@@ -38,8 +35,7 @@ handleClick(event){
     }
 
   }
-this.props.takeTurn()
-
+  this.props.takeTurn()
 }
 
 
@@ -50,9 +46,8 @@ let lines =
       return <Line line={line} row={lineIndex} key={lineIndex} handleClick={this.handleClick} />
     })
 
-return ( <table className="table"><tbody>{lines}</tbody></table> )
-}
-
+  return ( <table className="table"><tbody>{lines}</tbody></table> )
+  }
 
 }
 

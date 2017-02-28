@@ -1,5 +1,3 @@
-
-
 export const endGame = () => {
   return {
     type: 'END GAME'
@@ -17,8 +15,6 @@ export const resetGame = () => {
     type: 'RESET GAME'
   };
 }
-
-
 
 export const gameReducer = (state = {playing: true, turn: 0}, action) => {
   switch (action.type) {
