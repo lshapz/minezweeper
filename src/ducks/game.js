@@ -22,7 +22,6 @@ export const resetGame = () => {
 
 export const gameReducer = (state = {playing: true, turn: 0}, action) => {
   switch (action.type) {
-
     case 'NEXT TURN':
       let newTurn = state.turn +=1 
     return {...state, turn: newTurn}

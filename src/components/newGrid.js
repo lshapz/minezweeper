@@ -19,7 +19,7 @@ if (height * width < 250)
 
   }
 
- else if (height * width > 250 && height * width < 400)
+ else if (height * width >= 250 && height * width < 400)
   {
     Array.from(Array(40)).forEach((x, i)=>{
 

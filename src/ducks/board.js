@@ -14,10 +14,6 @@ export const makeHard = (hardness) =>{
 }
 
 
-// export const mineCount = (number) => {
-//   return {type: 'COUNT MINES', payload: number};
-// }
-
 export const resetMines = () => {
   return {type: 'RESET MINES'}
 }
