@@ -2,7 +2,7 @@ export const endGame = () => {
   return {
     type: 'WON GAME'
   };
-}// make these thunks that deal with the timeReducer
+}
 
 export const takeTurn = () => {
   return {
@@ -14,26 +14,14 @@ export const resetGame = () => {
   return {
     type: 'RESET GAME'
   };
-}// make these thunks that deal with the timeReducer
+}
 
 export const lostGame = () => {
   return {
     type: 'LOST GAME'
   }
-}// make these thunks that deal with the timeReducer
+}
 
-// let timer = null;
-// const start = () => (dispatch) => {
-//   clearInterval(timer);
-//   timer = setInterval(() => dispatch(tick()), 1000);
-//   dispatch({ type: 'TIMER_START' });
-//   dispatch(tick())
-// }
-// const tick = () => { type: 'TIMER_TICK' };
-// const stop = () => {
-//   clearInterval(timer);
-//   return { type: 'TIMER_STOP' };
-// }
 let defaultState = {playing: false, lost: false, won: false}
 
 export const gameReducer = (state = defaultState, action) => {
