@@ -24,18 +24,27 @@ constructor(props){
 }
 
 handleClick(event){
+  if (this.props.game.playing === false) {
+    this.props.takeTurn()
+  }
+
   event.preventDefault()
   if (event.type === "contextmenu"){
     if (this.props.me.flag === true || this.props.me.clicked === true)
       {return}
     else {
     this.props.flagSquare(this.props.row, this.props.column)
-    this.props.flagCount(this.props)}
+    this.props.flagCount(this.props)
+    if (this.props.grid.mines === 1){
+      this.props.endGame()
+    }
+
+  }
   }
   else {  
     let anyClicks = this.props.flex.reduce((a,b)=>{return a.concat(b)}).filter(item=>{ return item.clicked === true })
     if (anyClicks.length === 0 && this.props.me.mine === false){
-      this.props.resetGame()
+      // this.props.resetGame()
       this.props.clickSquare(this.props.row, this.props.column)
     }
     else if (anyClicks.length === 0 && this.props.me.mine === true){
@@ -52,11 +61,9 @@ handleClick(event){
     }
     else if (this.props.me.clicked === true){
       let foo = this.clickedSquare()
-      // debugger 
       if (foo) { 
         foo.forEach(item=>{
           let [row, column] = item 
-          debugger
           this.props.clickSquare(row, column)
           if (this.props.flex[row][column].text === 'mine'){
             this.props.lostGame()
@@ -66,7 +73,6 @@ handleClick(event){
     }
 
   }
-  this.props.takeTurn()
 }
 
 clickedSquare(){
@@ -142,7 +148,7 @@ render(){
 
 function mapStateToProps(state, props){
   let square = state.gridReducer.grid[props.row][props.column]
-  return {game: state.gameReducer, me: square, flex: state.gridReducer.grid} 
+  return {game: state.gameReducer, me: square, flex: state.gridReducer.grid, grid: state.gridReducer} 
 }
 
 

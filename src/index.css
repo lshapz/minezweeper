@@ -63,6 +63,14 @@ button{
 
 }
 
+.medium {
+  padding-top: 10px;
+  font-size: 4em;
+  font-weight: bold;
+  text-align: center;
+  color: #471B00;
+
+}
 body {
   text-align: center;
   font-family: sans-serif;

@@ -78,7 +78,8 @@ export const gridReducer = (state = {grid: [], mines: 0}, action) => {
       return {...state, mines: flag }
     case 'CHANGE DIFFICULTY':
       let new_state = gridSizer(action.payload);
-      return {...state, grid: new_state[0], mines: new_state[1]} 
+      let [newGrid, newMines] = new_state 
+      return {...state, grid: newGrid, mines: newMines} 
     case 'FLAG SQUARE':
       let flag_state =  flaggedMe(action.payload, state);
       return {...state, grid: flag_state};

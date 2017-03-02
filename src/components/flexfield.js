@@ -9,7 +9,7 @@ var array = [];
 
 if (height * width < 250)
   {
-  Array.from(Array(20)).forEach((x, i)=>{
+  Array.from(Array(5)).forEach((x, i)=>{
 
      let row =  Math.floor((Math.random() * height))
      let column =  Math.floor((Math.random() * width))
