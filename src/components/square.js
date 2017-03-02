@@ -20,8 +20,43 @@ class Square extends React.Component {
 constructor(props){
   super(props)
   this.clickedSquare = this.clickedSquare.bind(this)
+  this.handleClick = this.handleClick.bind(this)
 }
 
+handleClick(event){
+  event.preventDefault()
+  if (event.type === "contextmenu"){
+    if (this.props.me.flag === true || this.props.me.clicked === true)
+      {return}
+    else {
+    this.props.flagSquare(this.props.row, this.props.column)
+    this.props.flagCount(this.props)}
+  }
+  else {  
+    if (this.props.me.flag === true) {
+      return
+    }
+    else if (this.props.me.mine === true) {
+      this.props.endGame()
+    }
+    else if (this.props.me.clicked === false) {
+      this.props.clickSquare(this.props.row, this.props.column)
+    }
+    else if (this.props.me.clicked === true){
+      let foo = this.clickedSquare()
+      if (foo) { 
+        foo.forEach(item=>{
+          this.props.clickSquare(item[0], item[1])
+          if (this.props.flex[item[0]][item[1]].text === 'mine'){
+            this.props.endGame()
+          }
+        }) 
+     }
+    }
+
+  }
+  this.props.takeTurn()
+}
 
 clickedSquare(){
   let row = this.props.row
@@ -86,7 +121,7 @@ render(){
   let image = imageSource[show]
 
   return (
-  <td onContextMenu={this.props.handleClick.bind(this)} onClick={this.props.handleClick.bind(this)}>
+  <td onContextMenu={this.handleClick} onClick={this.handleClick}>
     <img className="box" src={image} alt={this.props.row + " " + this.props.column} />  
   </td>
 

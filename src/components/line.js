@@ -5,17 +5,15 @@ const Line = (props) => {
 
   let squares = 
   props.line.map((cell, cellIndex)=>{
-     return <Square key={cellIndex} handleClick={props.handleClick} row={props.row} column={cellIndex} /> 
+     return <Square key={cellIndex} row={props.row} column={cellIndex} /> 
    })
 
-return (
+  return (
 
- <tr className="row">{squares}</tr>  )
+    <tr className="row">{squares}</tr>  
 
-
+  )
 
 }
-
-
 
 export default Line
