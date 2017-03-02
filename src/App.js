@@ -4,8 +4,6 @@ import Form from './components/form.js'
 import Counter from './components/counter.js'
 import Footer from './components/footer.js'
 import Header from './components/header.js'
-// import Timer from './components/timer.js'
-
 
 class App extends Component {
   render() {

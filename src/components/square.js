@@ -30,7 +30,7 @@ handleClick(event){
 
   event.preventDefault()
   if (event.type === "contextmenu"){
-    if (this.props.me.flag === true || this.props.me.clicked === true)
+    if (this.props.me.clicked === true)
       {return}
     else {
     this.props.flagSquare(this.props.row, this.props.column)
@@ -44,7 +44,6 @@ handleClick(event){
   else {  
     let anyClicks = this.props.flex.reduce((a,b)=>{return a.concat(b)}).filter(item=>{ return item.clicked === true })
     if (anyClicks.length === 0 && this.props.me.mine === false){
-      // this.props.resetGame()
       this.props.clickSquare(this.props.row, this.props.column)
     }
     else if (anyClicks.length === 0 && this.props.me.mine === true){
@@ -91,10 +90,10 @@ clickedSquare(){
       newClickers.push(subArray)
     }
     else if (this.props.flex[subArray[0]] && this.props.flex[subArray[0]][subArray[1]] && this.props.flex[subArray[0]][subArray[1]].clicked === false && this.props.flex[subArray[0]][subArray[1]].flag === true){
-      count +=1 
+      count += 1 
     }
   })
-  if (count === number){
+  if (count >= number){
     return newClickers
   }
   else {
