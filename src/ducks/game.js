@@ -1,6 +1,6 @@
 export const endGame = () => {
   return {
-    type: 'END GAME'
+    type: 'WON GAME'
   };
 }
 
@@ -16,15 +16,25 @@ export const resetGame = () => {
   };
 }
 
-export const gameReducer = (state = {playing: true, turn: 0}, action) => {
+export const lostGame = () => {
+  return {
+    type: 'LOST GAME'
+  }
+}
+
+export const gameReducer = (state = {playing: false, turn: 0, lost: false}, action) => {
   switch (action.type) {
     case 'NEXT TURN':
       let newTurn = state.turn +=1 
     return {...state, turn: newTurn}
-    case 'END GAME':
-      console.log("game over")
-      return {...state, playing: false } ;
+    case 'WON GAME':
+      console.log("game over, you win")
+      return {...state, playing: false }
+    case 'LOST GAME': 
+      console.log("game over, you lose")
+      return {...state, lost: true, playing: false}
     case 'RESET GAME':
+      console.log("off to the races")
       return {playing: true, turn: 0}
     default:
       return state;

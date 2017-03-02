@@ -1,5 +1,5 @@
 import React from 'react'
-import {endGame, takeTurn} from '../ducks/game.js'
+import {endGame, lostGame, takeTurn, resetGame} from '../ducks/game.js'
 import { connect } from 'react-redux'
 import {defineSquare, flagSquare, clickSquare, flagCount} from '../ducks/board.js'
 import image0 from './images/0.png'
@@ -33,22 +33,28 @@ handleClick(event){
     this.props.flagCount(this.props)}
   }
   else {  
-    if (this.props.me.flag === true) {
+    let anyClicks = this.props.flex.reduce((a,b)=>{return a.concat(b)}).filter(item=>{ return item.clicked === true })
+    if (this.props.game.playing === false && anyClicks.length === 0){
+      this.props.resetGame()
+      this.props.clickSquare(this.props.row, this.props.column)
+    }
+    else if (this.props.me.flag === true) {
       return
     }
     else if (this.props.me.mine === true) {
-      this.props.endGame()
+      this.props.lostGame()
     }
     else if (this.props.me.clicked === false) {
       this.props.clickSquare(this.props.row, this.props.column)
     }
     else if (this.props.me.clicked === true){
       let foo = this.clickedSquare()
+      // debugger 
       if (foo) { 
         foo.forEach(item=>{
           this.props.clickSquare(item[0], item[1])
           if (this.props.flex[item[0]][item[1]].text === 'mine'){
-            this.props.endGame()
+            this.props.lostGame()
           }
         }) 
      }
@@ -111,7 +117,7 @@ render(){
     if (this.props.me.clicked === true) {
         show = this.props.me.text
       }
-    else if (this.props.game.playing === false){
+    else if (this.props.game.lost === true){
         show = this.props.me.text
     }
     else if (this.props.me.flag === true ) {
@@ -135,4 +141,4 @@ function mapStateToProps(state, props){
 }
 
 
-export default connect(mapStateToProps, {takeTurn, clickSquare, endGame, defineSquare, flagSquare, flagCount})(Square)
+export default connect(mapStateToProps, {lostGame, resetGame, takeTurn, clickSquare, endGame, defineSquare, flagSquare, flagCount})(Square)

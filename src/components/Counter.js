@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const Counter = (props) => {
   
-    if (props.game.playing === false) {
+    if (props.game.lost === true) {
       return (<div className="giant">YOU LOSE!</div>)
     }
     else if (props.grid.mines === 1){
