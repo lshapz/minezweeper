@@ -34,9 +34,12 @@ handleClick(event){
   }
   else {  
     let anyClicks = this.props.flex.reduce((a,b)=>{return a.concat(b)}).filter(item=>{ return item.clicked === true })
-    if (this.props.game.playing === false && anyClicks.length === 0){
+    if (anyClicks.length === 0 && this.props.me.mine === false){
       this.props.resetGame()
       this.props.clickSquare(this.props.row, this.props.column)
+    }
+    else if (anyClicks.length === 0 && this.props.me.mine === true){
+      this.props.lostGame()
     }
     else if (this.props.me.flag === true) {
       return
@@ -52,8 +55,10 @@ handleClick(event){
       // debugger 
       if (foo) { 
         foo.forEach(item=>{
-          this.props.clickSquare(item[0], item[1])
-          if (this.props.flex[item[0]][item[1]].text === 'mine'){
+          let [row, column] = item 
+          debugger
+          this.props.clickSquare(row, column)
+          if (this.props.flex[row][column].text === 'mine'){
             this.props.lostGame()
           }
         }) 
