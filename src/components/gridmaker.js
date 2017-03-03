@@ -33,6 +33,11 @@ function gridMaker (height, width){
   let numbersArray =  emptyArray.map((line, lineIndex)=>{
     return line.map((cell, cellIndex)=>{
     let mines = 0 
+    // let neighbors = [ 
+    //   [row-1, column-1], [row-1, column], [row-1, column+1], 
+    //   [row, column-1], [row, column+1],
+    //   [row+1, column-1], [row+1, column], [row+1, column+1]
+    // ]
     if (lineIndex === 0 && cellIndex === 0) {
          if (emptyArray[lineIndex][cellIndex+1] === "mine")
           { mines = 1 }

@@ -4,9 +4,8 @@ import Timer from './timer'
 
 const Counter = (props) => {
   let time, count
-
   if (props.game.playing) { 
-    time = <Timer /> 
+   time = <Timer /> 
   }
   else if (props.game.lost || props.game.won) {
    time = <Timer prop={props.game} />
@@ -14,22 +13,21 @@ const Counter = (props) => {
   else {
    time = "0:00"
   }
-
   if (props.game.lost === true) {
-   count = (<div className="giant">YOU LOSE!</div>)
+   count = (<div className="mineCount">YOU LOSE!</div>)
   }
   else if (props.grid.mines === 1){
-  count =  (<div className="giant">{props.grid.mines} mine remaining</div>)
+   count =  (<div className="mineCount">{props.grid.mines} mine remaining</div>)
   }
   else if (props.game.won){
-   count = (<div className="giant">YOU WIN!</div>)
+   count = (<div className="mineCount">YOU WIN!</div>)
   }
   else {
-   count = (<div className="giant">{props.grid.mines} mines remaining</div>)
+   count = (<div className="mineCount">{props.grid.mines} mines remaining</div>)
   }
   return(
     <div>
-      <div className="medium">{time}</div>
+      <div className="timer">{time}</div>
       {count}
     </div>
   )
