@@ -34,8 +34,8 @@ return (
 
 
 function mapStateToProps(state, props){
-  return {game: state.gameReducer, flex: state.gridReducer} 
+  return {game: state.gameReducer} 
 }
 
 // export default Form
-export default connect(mapStateToProps, {resetMines, makeHard, resetGame})(Form)
+export default connect(mapStateToProps, {makeHard, resetGame, resetMines})(Form)

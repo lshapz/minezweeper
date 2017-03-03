@@ -1,7 +1,7 @@
 import React from 'react'
-import {endGame, lostGame, takeTurn, resetGame} from '../ducks/game.js'
+import {lostGame, resetGame, takeTurn, winGame} from '../ducks/game.js'
 import { connect } from 'react-redux'
-import {defineSquare, flagSquare, clickSquare, flagCount} from '../ducks/board.js'
+import {clickSquare, defineSquare, flagCount, flagSquare} from '../ducks/board.js'
 import image0 from './images/0.png'
 import image1 from './images/1.png'
 import image2 from './images/2.png'
@@ -33,23 +33,16 @@ handleClick(event){
     if (this.props.me.clicked === true)
       {return}
     else {
-    this.props.flagSquare(this.props.row, this.props.column)
-    this.props.flagCount(this.props)
+      this.props.flagSquare(this.props.row, this.props.column)
+      this.props.flagCount(this.props.me.flag)
     if (this.props.grid.mines === 1){
-      this.props.endGame()
+      this.props.winGame()
     }
 
   }
   }
   else {  
-    let anyClicks = this.props.flex.reduce((a,b)=>{return a.concat(b)}).filter(item=>{ return item.clicked === true })
-    if (anyClicks.length === 0 && this.props.me.mine === false){
-      this.props.clickSquare(this.props.row, this.props.column)
-    }
-    else if (anyClicks.length === 0 && this.props.me.mine === true){
-      this.props.lostGame()
-    }
-    else if (this.props.me.flag === true) {
+    if (this.props.me.flag === true) {
       return
     }
     else if (this.props.me.mine === true) {
@@ -59,12 +52,12 @@ handleClick(event){
       this.props.clickSquare(this.props.row, this.props.column)
     }
     else if (this.props.me.clicked === true){
-      let foo = this.clickedSquare()
-      if (foo) { 
-        foo.forEach(item=>{
+      let howdyNeighbor = this.clickedSquare()
+      if (howdyNeighbor) { 
+        howdyNeighbor.forEach(item=>{
           let [row, column] = item 
           this.props.clickSquare(row, column)
-          if (this.props.flex[row][column].text === 'mine'){
+          if (this.props.grid.grid[row][column].text === 'mine'){
             this.props.lostGame()
           }
         }) 
@@ -86,10 +79,11 @@ clickedSquare(){
                 [row+1, column-1], [row+1, column], [row+1, column+1]
                 ]
   neighbors.forEach(subArray=>{
-    if (this.props.flex[subArray[0]] && this.props.flex[subArray[0]][subArray[1]] && this.props.flex[subArray[0]][subArray[1]].clicked === false && this.props.flex[subArray[0]][subArray[1]].flag !== true){
+    let [friendRow, friendColumn] = subArray
+    if (this.props.grid.grid[friendRow] && this.props.grid.grid[friendRow][friendColumn] && this.props.grid.grid[friendRow][friendColumn].clicked === false && this.props.grid.grid[friendRow][friendColumn].flag !== true){
       newClickers.push(subArray)
     }
-    else if (this.props.flex[subArray[0]] && this.props.flex[subArray[0]][subArray[1]] && this.props.flex[subArray[0]][subArray[1]].clicked === false && this.props.flex[subArray[0]][subArray[1]].flag === true){
+    else if (this.props.grid.grid[friendRow] && this.props.grid.grid[friendRow][friendColumn] && this.props.grid.grid[friendRow][friendColumn].clicked === false && this.props.grid.grid[friendRow][friendColumn].flag === true){
       count += 1 
     }
   })
@@ -111,10 +105,11 @@ componentWillUpdate(){
                 [row, column-1], [row, column+1],
                 [row+1, column-1], [row+1, column], [row+1, column+1]
               ]
-      neighbors.forEach(arr=>{
-      if (this.props.flex[arr[0]] && this.props.flex[arr[0]][arr[1]] && this.props.flex[arr[0]][arr[1]].text !== 'mine' && this.props.flex[arr[0]][arr[1]].clicked === false)
+      neighbors.forEach(subArray=>{
+        let [friendRow, friendColumn] = subArray
+      if (this.props.grid.grid[friendRow] && this.props.grid.grid[friendRow][friendColumn] && this.props.grid.grid[friendRow][friendColumn].text !== 'mine' && this.props.grid.grid[friendRow][friendColumn].clicked === false)
         {
-          this.props.clickSquare(arr[0], arr[1])
+          this.props.clickSquare(friendRow, friendColumn)
         }
       })
     }
@@ -124,12 +119,9 @@ componentWillUpdate(){
 
 render(){
   let show = "X"
-    if (this.props.me.clicked === true) {
+    if (this.props.me.clicked === true || this.props.game.lost === true) {
         show = this.props.me.text
       }
-    else if (this.props.game.lost === true){
-        show = this.props.me.text
-    }
     else if (this.props.me.flag === true ) {
       show = "flag"
     }  
@@ -147,8 +139,8 @@ render(){
 
 function mapStateToProps(state, props){
   let square = state.gridReducer.grid[props.row][props.column]
-  return {game: state.gameReducer, me: square, flex: state.gridReducer.grid, grid: state.gridReducer} 
+  return {game: state.gameReducer, me: square, grid: state.gridReducer} 
 }
 
 
-export default connect(mapStateToProps, {lostGame, resetGame, takeTurn, clickSquare, endGame, defineSquare, flagSquare, flagCount})(Square)
+export default connect(mapStateToProps, {clickSquare, defineSquare, flagCount, flagSquare, lostGame, resetGame, takeTurn, winGame})(Square)

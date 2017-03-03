@@ -5,7 +5,6 @@ import image2 from './instructiongifs/02-flag.gif'
 import image3 from './instructiongifs/03-reveal.gif'
 import image4 from './instructiongifs/04-lose.gif'
 
-
 const customStyles = { 
   content : {
     top                   : '50%',

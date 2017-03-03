@@ -1,4 +1,4 @@
-export const endGame = () => {
+export const winGame = () => {
   return {
     type: 'WON GAME'
   };
@@ -27,6 +27,7 @@ let defaultState = {playing: false, lost: false, won: false}
 export const gameReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'FIRST TURN':
+      console.log("off to the races")
       return {...state, playing: true}
     case 'WON GAME':
       console.log("game over, you win")
@@ -35,7 +36,7 @@ export const gameReducer = (state = defaultState, action) => {
       console.log("game over, you lose")
       return {...state, lost: true, playing: false}
     case 'RESET GAME':
-      console.log("off to the races")
+      console.log("shall we play a game")
       return defaultState
     default:
       return state;

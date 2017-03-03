@@ -10,7 +10,8 @@ label{
   color: #471B00;
 }
 button{
-  border-radius: 10px
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .container{
@@ -45,7 +46,7 @@ button{
 }
 
 .footer {
-  margin-top: 2%;
+  margin-top: 1.75%;
   color: #471B00;
 }
 
@@ -56,7 +57,7 @@ button{
 }
 
 .giant {
-  font-size: 8em;
+  font-size: 4em;
   font-weight: bold;
   text-align: center;
   color: #471B00;
@@ -65,7 +66,7 @@ button{
 
 .medium {
   padding-top: 10px;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   text-align: center;
   color: #471B00;

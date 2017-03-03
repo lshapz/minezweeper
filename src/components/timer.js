@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
 export const formatTime = (time) => {
   if (time < 0) return '--:--'
   const h = Math.floor(time / 3600)
@@ -42,7 +41,6 @@ class TimerContainer extends React.Component {
   }
 
   componentWillReceiveProps(){
-    // debugger
     this.tock.bind(this)
     clearInterval(this.interval) 
   }
@@ -70,6 +68,5 @@ class TimerContainer extends React.Component {
 function mapStateToProps(state, props){
   return {game: state.gameReducer.playing} 
 }
-
 
 export default connect(mapStateToProps)(TimerContainer)

@@ -5,21 +5,18 @@ import {connect} from 'react-redux'
 const Grid = (props) => {
 
   let lines =  
-  props.flex.map((line, lineIndex)=>{
+  props.grid.map((line, lineIndex)=>{
       return <Line line={line} row={lineIndex} key={lineIndex} />
     })
 
-  return ( <span>
+  return (
     <table className="table"><tbody>{lines}</tbody></table> 
-    
-
-    </span>
   )
 
 }
 
 function mapStateToProps(state, props){
-  return {flex: state.gridReducer.grid, game: state.gameReducer} 
+  return {grid: state.gridReducer.grid} 
 }
 
 export default connect(mapStateToProps)(Grid)

@@ -17,11 +17,12 @@ export const resetMines = () => {
 }
 
 export const flagCount = (flagged) => {
-  return {type: 'MINE FLAGGED', payload: flagged.me.flag}
+  return {type: 'MINE FLAGGED', payload: flagged}
 }
 
 const flaggedMe = (array, state) => {
-    let square = state.grid[array[0]][array[1]]
+    let [row, column] = array
+    let square = state.grid[row][column]
     let flag_state =  state.grid.map(item=>{
           return item.map(next=>{
             if (next === square)
@@ -33,7 +34,8 @@ const flaggedMe = (array, state) => {
     } 
 
 const clickedMe = (array, state) => { 
-      let square = state.grid[array[0]][array[1]]
+      let [row, column] = array
+      let square = state.grid[row][column]
       let click_state =  state.grid.map(item=>{
         return item.map(next=>{
             if (square === next)
@@ -46,39 +48,33 @@ const clickedMe = (array, state) => {
 
 
 function gridSizer(difficulty){
-  let grid
+  let grid;
   switch(difficulty) {
     case 'easy':
-      grid = Gridmaker(10, 10)
+      grid = Gridmaker(10, 10);
       break;
     case 'medium':
-      grid = Gridmaker(16, 16)
+      grid = Gridmaker(16, 16);
       break;
     case 'hard':
-      grid = Gridmaker(16, 32)
+      grid = Gridmaker(16, 32);
       break;
     default: 
-      grid = Gridmaker(10, 10)
+      grid = Gridmaker(10, 10);
   }
-  return grid
+  return grid;
   }
 
 
 export const gridReducer = (state = {grid: [], mines: 0}, action) => {
   switch (action.type) {
     case 'RESET MINES':
-      let mine = 0
-      return {...state, mines: mine}
+      return {...state, mines: 0};
     case 'MINE FLAGGED':
-      let flag 
-      if (action.payload === true)
-        {flag = state.mines -= 1}
-      else if (action.payload === false)
-        {flag = state.mines += 1}
-      return {...state, mines: flag }
+      let flag = action.payload ? state.mines -= 1 : state.mines += 1;
+      return {...state, mines: flag };
     case 'CHANGE DIFFICULTY':
-      let new_state = gridSizer(action.payload);
-      let [newGrid, newMines] = new_state 
+      let [newGrid, newMines] = gridSizer(action.payload);
       return {...state, grid: newGrid, mines: newMines} 
     case 'FLAG SQUARE':
       let flag_state =  flaggedMe(action.payload, state);
