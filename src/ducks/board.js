@@ -67,7 +67,7 @@ function gridSizer(difficulty){
   let grid;
   switch(difficulty) {
     case 'easy':
-      grid = Gridmaker(10, 10);
+      grid = Gridmaker(12, 12);
       break;
     case 'medium':
       grid = Gridmaker(16, 16);
@@ -76,7 +76,7 @@ function gridSizer(difficulty){
       grid = Gridmaker(16, 32);
       break;
     default: 
-      grid = Gridmaker(10, 10);
+      grid = Gridmaker(12, 12);
   }
   return grid;
 }
