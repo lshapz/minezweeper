@@ -35,13 +35,25 @@ handleClick(event){
     else {
       this.props.flagSquare(this.props.row, this.props.column)
       this.props.flagCount(this.props.me.flag)
-      if (this.props.grid.mines === 1 && this.props.me.mine === true) {
-        this.props.winGame()
-        // consider having win and lost game check that all mine === all flag?) 
-      } 
-      else if (this.props.grid.mines === 1 && this.props.me.mine === false) {
-        this.props.lostGame()
+      if (this.props.grid.mines === 1) {
+        let grid = this.props.grid.grid
+        let flags = grid.filter(item=>{return item.flag === true})
+        let mines = grid.filter(item=>{return item.mine === true})
+        if (flags === mines){
+          this.props.winGame()
+        }
+        else {
+          this.props.lostGame()
+        }
       }
+
+
+      // if (this.props.grid.mines === 1 && this.props.me.mine === true) {
+      //   // consider having win and lost game check that all mine === all flag?) 
+      // } 
+      // else if (this.props.grid.mines === 1 && this.props.me.mine === false) {
+      //   this.props.lostGame()
+      // }
     }
   }
   else {  
