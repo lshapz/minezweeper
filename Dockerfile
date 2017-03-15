@@ -1,2 +1,5 @@
 FROM node:6
-EXPOSE 3000
+ADD . .
+RUN npm install
+CMD ["yarn", "start"]
+
