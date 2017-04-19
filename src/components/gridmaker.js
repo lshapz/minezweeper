@@ -13,7 +13,7 @@ function gridMaker (height, width){
     })
   }
   else if (height * width < 250 && height * width >= 100 ) {
-    Array.from(Array(20)).forEach((x, i)=>{
+    Array.from(Array(3)).forEach((x, i)=>{
       let row =  Math.floor((Math.random() * height))
       let column =  Math.floor((Math.random() * width))
       emptyArray[row][column] = "mine"
