@@ -14,6 +14,12 @@ import image8 from './images/8.png'
 import imageX from './images/X.png'
 import imageflag from './images/flag.png'
 import imagemine from './images/mine.png'
+const flatten = arr => arr.reduce(
+  (acc, val) => acc.concat(
+    Array.isArray(val) ? flatten(val) : val
+  ),
+  []
+);
 
 class Square extends React.Component {
 
@@ -37,23 +43,31 @@ handleClick(event){
       this.props.flagCount(this.props.me.flag)
       if (this.props.grid.mines === 1) {
         let grid = this.props.grid.grid
-        let flags = grid.filter(item=>{return item.flag === true})
-        let mines = grid.filter(item=>{return item.mine === true})
-        if (flags === mines){
+        let won = true
+        let flags = flatten(grid.map(line=>{ 
+           return line.filter(item=>{
+            return item.flag === true
+          })
+        }))
+        let mines = flatten(grid.map(line=>{ 
+          return line.filter(item=>{
+            return item.mine === true
+          })
+        }))
+        
+        flags.forEach((flag, idx)=>{
+          if (!mines.includes(flag)) {
+            won = false
+          } 
+        })
+        
+        if (won === true){
           this.props.winGame()
         }
         else {
           this.props.lostGame()
         }
       }
-
-
-      // if (this.props.grid.mines === 1 && this.props.me.mine === true) {
-      //   // consider having win and lost game check that all mine === all flag?) 
-      // } 
-      // else if (this.props.grid.mines === 1 && this.props.me.mine === false) {
-      //   this.props.lostGame()
-      // }
     }
   }
   else {  
