@@ -13,7 +13,8 @@ remaining todos:
 
     or per person: IP? / cookie or session? / make an account and persist forever?
 
-  
+  4) electron desktop version??? https://medium.freecodecamp.com/building-an-electron-application-with-create-react-app-97945861647c
+
 image credit to:
 http://opengameart.org/content/minesweeper-tile-set-lazarus 
 timer component credit to a github repo that has been deleted 
