@@ -10,6 +10,8 @@ remaining todos:
   3) high scores? 
 
     top 15 all time each difficulty? (save to a Mongo somewhere)
+    
+    https://github.com/sergeyksv/tingodb to keep in memory (great idea for electron below)
 
     or per person: IP? / cookie or session? / make an account and persist forever?
 
