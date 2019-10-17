@@ -14,6 +14,7 @@ import image8 from './images/8.png'
 import imageX from './images/X.png'
 import imageflag from './images/flag.png'
 import imagemine from './images/mine.png'
+
 const flatten = arr => arr.reduce(
   (acc, val) => acc.concat(
     Array.isArray(val) ? flatten(val) : val

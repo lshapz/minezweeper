@@ -82,7 +82,7 @@ function gridSizer(difficulty){
 }
 
 
-export const gridReducer = (state = {grid: [], mines: 0}, action) => {
+export const gridReducer = (state = {grid: [], mines: 0, level: 'easy'}, action) => {
   switch (action.type) {
     case 'RESET MINES':
       return {...state, mines: 0};
@@ -91,7 +91,7 @@ export const gridReducer = (state = {grid: [], mines: 0}, action) => {
       return {...state, mines: flag};
     case 'CHANGE DIFFICULTY':
       let [newGrid, newMines] = gridSizer(action.payload);
-      return {...state, grid: newGrid, mines: newMines} 
+      return {...state, grid: newGrid, mines: newMines, level: action.payload} 
     case 'FLAG SQUARE':
       let flag_state =  flaggedMe(action.payload, state);
       return {...state, grid: flag_state};

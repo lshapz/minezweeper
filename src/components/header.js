@@ -4,6 +4,9 @@ import image1 from './instructiongifs/01-click.gif'
 import image2 from './instructiongifs/02-flag.gif'
 import image3 from './instructiongifs/03-reveal.gif'
 import image4 from './instructiongifs/04-lose.gif'
+import {connect} from 'react-redux'
+import {makeHard, resetMines} from '../ducks/board.js'
+import {resetGame} from '../ducks/game.js'
 
 const customStyles = { 
   content : {
@@ -24,17 +27,19 @@ constructor(props){
     this.state = {
       modalIsOpen: false
     };
-
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.resetButton = this.resetButton.bind(this);
 }
-  openModal() {
-    this.setState({modalIsOpen: true});
+
+  resetButton(){
+    this.props.resetMines()
+    this.props.resetGame()
+    this.props.makeHard(this.props.level)
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
+  openModal() {
+    this.setState({modalIsOpen: true});
   }
 
   closeModal() {
@@ -46,7 +51,11 @@ constructor(props){
 render(){
 return (
   <div>
-    <button onClick={this.openModal}>Instructions</button>
+    <span className="buttons">
+      <button onClick={this.openModal}>Instructions</button> 
+      <button onClick={this.resetButton}>New Game</button>
+    </span>
+
     <Modal 
       isOpen={this.state.modalIsOpen}
       onAfterOpen={this.afterOpenModal}
@@ -81,4 +90,10 @@ return (
 }
 }
 
-export default Header
+
+function mapStateToProps(state, props){
+  return {level: state.gridReducer.level} 
+}
+
+// export default Form
+export default connect(mapStateToProps, {makeHard, resetGame, resetMines})(Header)
