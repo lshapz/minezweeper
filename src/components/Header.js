@@ -52,8 +52,8 @@ render(){
 return (
   <div>
     <span className="buttons">
-      <button onClick={this.openModal}>Instructions</button> 
-      <button onClick={this.resetButton}>New Game</button>
+      <button className="button" onClick={this.openModal}>Instructions</button> 
+      <button className="button" onClick={this.resetButton}>New Game</button>
     </span>
 
     <Modal 
