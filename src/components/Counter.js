@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Timer from './timer'
+import Timer from './Timer'
 
 const Counter = (props) => {
   let time, count

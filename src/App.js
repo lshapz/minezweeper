@@ -1,9 +1,9 @@
 import React from 'react';
-import Grid from './components/grid.js'
-import Form from './components/form.js'
+import Grid from './components/Grid.js'
+import Form from './components/Form.js'
 import Counter from './components/Counter.js'
-import Footer from './components/footer.js'
-import Header from './components/header.js'
+import Footer from './components/Footer.js'
+import Header from './components/Header.js'
 
 class App extends React.Component {
   render() {

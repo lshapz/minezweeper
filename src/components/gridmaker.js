@@ -18,7 +18,7 @@ function gridMaker (height, width){
     }
     shuffle(emptyArray)
   
-    for (var i=0; i<height; i++) {
+    for (let i=0; i<height; i++) {
       matrix[i] = emptyArray.splice(0, width)
     }
 
@@ -30,7 +30,7 @@ function gridMaker (height, width){
     }
     shuffle(emptyArray)
   
-    for (var i=0; i<height; i++) {
+    for (let i=0; i<height; i++) {
       matrix[i] = emptyArray.splice(0, width)
     }
 
@@ -41,7 +41,7 @@ function gridMaker (height, width){
     }
     shuffle(emptyArray)
   
-    for (var i=0; i<height; i++) {
+    for (let i=0; i<height; i++) {
       matrix[i] = emptyArray.splice(0, width)
     }
   }
