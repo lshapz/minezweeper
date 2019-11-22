@@ -1,4 +1,4 @@
-import Gridmaker from '../components/gridmaker'
+import Gridmaker from '../gridmaker'
 
 export const flagSquare = (row, column) =>{
   return {
