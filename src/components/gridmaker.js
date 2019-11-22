@@ -1,40 +1,62 @@
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+
 function gridMaker (height, width){
 
-  var emptyArray = [];
-
-  for(var i=0; i<height; i++) {
-      emptyArray.push(new Array(width).fill(null));
-  }
+  var emptyArray = new Array(height * width).fill(null);
+  var matrix = []
   if (height * width < 100) {
-    Array.from(Array(10)).forEach((x, i)=>{
-      let row =  Math.floor((Math.random() * height))
-      let column =  Math.floor((Math.random() * width))
-      emptyArray[row][column] = "mine"
-    })
+    
+    for (let i = 0; i < 10; i++) {
+      emptyArray[i] = "mine"
+    }
+    shuffle(emptyArray)
+  
+    for (var i=0; i<height; i++) {
+      matrix[i] = emptyArray.splice(0, width)
+    }
+
   }
-  else if (height * width < 250 && height * width >= 100 ) {
-    Array.from(Array(20)).forEach((x, i)=>{
-      let row =  Math.floor((Math.random() * height))
-      let column =  Math.floor((Math.random() * width))
-      emptyArray[row][column] = "mine"
-    })
+  else if (height * width < 250 && height * width > 100 ) {
+
+    for (let i = 0; i < 20; i++) {
+      emptyArray[i] = "mine"
+    }
+    shuffle(emptyArray)
+  
+    for (var i=0; i<height; i++) {
+      matrix[i] = emptyArray.splice(0, width)
+    }
+
   }
   else if (height * width > 250 && height * width < 400) {
-    Array.from(Array(40)).forEach((x, i)=>{
-      let row =  Math.floor((Math.random() * height))
-      let column =  Math.floor((Math.random() * width))
-      emptyArray[row][column] = "mine"
-    })
+    for (let i = 0; i < 40; i++) {
+      emptyArray[i] = "mine"
+    }
+    shuffle(emptyArray)
+  
+    for (var i=0; i<height; i++) {
+      matrix[i] = emptyArray.splice(0, width)
+    }
   }
   else {
-    Array.from(Array(60)).forEach((x, i)=>{
-      let row =  Math.floor((Math.random() * height))
-      let column =  Math.floor((Math.random() * width))
-      emptyArray[row][column] = "mine"
-    })
+    for (let i = 0; i < 60; i++) {
+      emptyArray[i] = "mine"
+    }
+    shuffle(emptyArray)
+  
+    for (var i=0; i<height; i++) {
+      matrix[i] = emptyArray.splice(0, width)
+    }
   }
 
-  let numbersArray = emptyArray.map((line, row)=>{
+  let numbersArray = matrix.map((line, row)=>{
     return line.map((cell, column)=>{
     let mines = 0 
     let neighbors = [ 
@@ -45,7 +67,7 @@ function gridMaker (height, width){
     neighbors.forEach((friend)=>{
       let [friendRow, friendColumn] = friend
       if ((friendRow >= 0 && friendRow <= height - 1) && (friendColumn >= 0 && friendColumn <= width - 1)) {
-        if (emptyArray[friendRow][friendColumn] === "mine"){
+        if (matrix[friendRow][friendColumn] === "mine"){
           mines += 1
         }
       }
@@ -74,3 +96,4 @@ function gridMaker (height, width){
 }
 
 export default gridMaker
+

@@ -50,7 +50,7 @@ constructor(props){
 
 render(){
 return (
-  <div>
+  <div>v 
     <span className="buttons">
       <button onClick={this.openModal}>Instructions</button> 
       <button onClick={this.resetButton}>New Game</button>
